@@ -35,9 +35,9 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
         <div className="max-w-3xl mx-auto space-y-6">
           
           {/* Navratri Festival Date Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#3A0404]/85 border border-[#D4AF37]/40 px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md">
-            <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span className="font-serif-heading text-xs font-semibold text-[#D4AF37] tracking-wider uppercase">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#3A0404]/85 border border-[#D4AF37]/40 px-3 sm:px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md max-w-full">
+            <Calendar className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
+            <span className="font-serif-heading text-[10px] sm:text-xs font-semibold text-[#D4AF37] tracking-wider uppercase truncate">
               {language === 'gu'
                 ? 'શારદીય નવરાત્રી ૨૦૨૬: ૧૧ – ૨૦ ઓક્ટોબર'
                 : language === 'hi'
@@ -47,17 +47,17 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
           </div>
 
           {/* Main Headings */}
-          <div className="space-y-3">
-            <h1 className="font-serif-title text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#FFF7E8] leading-tight tracking-tight drop-shadow-md">
+          <div className="space-y-2 sm:space-y-3">
+            <h1 className="font-serif-title text-2xl sm:text-5xl md:text-6xl font-extrabold text-[#FFF7E8] leading-tight tracking-tight drop-shadow-md">
               {t.hero.mainTitle}
             </h1>
-            <p className="font-serif-heading text-lg sm:text-2xl md:text-3xl text-gold-gradient font-bold tracking-wide">
+            <p className="font-serif-heading text-base sm:text-2xl md:text-3xl text-gold-gradient font-bold tracking-wide">
               {t.hero.subTitle}
             </p>
           </div>
 
           {/* Subtitle Description */}
-          <p className="text-sm sm:text-base md:text-lg text-[#FFF7E8]/90 font-gujarati leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs sm:text-base md:text-lg text-[#FFF7E8]/90 font-gujarati leading-relaxed max-w-2xl mx-auto">
             {t.hero.description}
           </p>
 

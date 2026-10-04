@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { syncUser } from '../lib/apiClient';
+
 
 export interface UserProfile {
   id: string;
@@ -63,7 +65,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const openAuthModal = (message: string = '') => {
-    setAuthMessage(message || 'Please sign in with Google to access full Garba lyrics and audio playback!');
+    setAuthMessage(message || 'Please sign in with your Devotee account to access full Garba lyrics and audio playback!');
     setIsAuthModalOpen(true);
   };
 
@@ -72,38 +74,55 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setAuthMessage('');
   };
 
-  const loginWithGoogle = (customName?: string, customEmail?: string, avatarUrl?: string) => {
+  const loginWithGoogle = async (customName?: string, customEmail?: string, avatarUrl?: string) => {
     const name = customName || 'Devotee Singer';
-    const email = customEmail || 'devotee@navswar.com';
+    const email = customEmail || 'devotee@garbaraas.in';
+    const avatar = avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`;
     const newProfile: UserProfile = {
-      id: `user-${Date.now()}`,
+      id: `devotee-${Date.now()}`,
       name,
       email,
-      avatarUrl: avatarUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`,
+      avatarUrl: avatar,
     };
 
     setUser(newProfile);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newProfile));
     closeAuthModal();
+
+    try {
+      await syncUser({ email, name, avatarUrl: avatar });
+    } catch (e) {
+      console.warn('Backend user sync failed, running in offline/local storage fallback:', e);
+    }
   };
 
-  const loginWithGoogleCredential = (credential: string) => {
+  const loginWithGoogleCredential = async (credential: string) => {
     const payload = parseGoogleJwtToken(credential);
     if (!payload) {
-      console.error('Invalid Google Credential Token');
+      console.error('Invalid Credential Token');
       return;
     }
 
+    const email = payload.email || 'devotee@gmail.com';
+    const name = payload.name || 'Devotee Singer';
+    const avatar = payload.picture || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`;
+
     const newProfile: UserProfile = {
-      id: payload.sub || `google-${Date.now()}`,
-      name: payload.name || 'Google Devotee',
-      email: payload.email || 'user@gmail.com',
-      avatarUrl: payload.picture || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(payload.name || 'Google')}`,
+      id: payload.sub || `devotee-${Date.now()}`,
+      name,
+      email,
+      avatarUrl: avatar,
     };
 
     setUser(newProfile);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(newProfile));
     closeAuthModal();
+
+    try {
+      await syncUser({ email, name, avatarUrl: avatar, googleId: payload.sub });
+    } catch (e) {
+      console.warn('Backend user sync failed:', e);
+    }
   };
 
   const logout = () => {

@@ -9,6 +9,7 @@ import { importPendingData, runMigrations } from './migrations.ts';
 import { garbasRouter } from './routes/garbas.ts';
 import { commentsRouter } from './routes/comments.ts';
 import { invalidateLibraryCache, songsRouter } from './routes/songs.ts';
+import { userRouter } from './routes/users.ts';
 
 mkdirSync(config.uploadDir, { recursive: true });
 
@@ -46,6 +47,7 @@ api.use(
 api.use(songsRouter);
 api.use(garbasRouter);
 api.use(commentsRouter);
+api.use('/users', userRouter);
 
 import { handleGarbaSsr, handleHomepageSsr, handleRobotsTxt, handleSitemapXml } from './ssr.ts';
 

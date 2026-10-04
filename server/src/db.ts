@@ -20,10 +20,12 @@ export const SCHEMA_COLUMNS: Record<string, string> = {
   subcollection: 'VARCHAR(120) NULL',
   sort_order: 'INT NOT NULL DEFAULT 0',
   search_text: 'TEXT NULL',
+  user_email: 'VARCHAR(255) NULL',
 };
 
 export const SCHEMA_INDEXES: Record<string, string> = {
   idx_garbas_collection: '(collection, subcollection, sort_order)',
+  idx_garbas_user_email: '(user_email)',
 };
 
 export const SCHEMA = [
@@ -56,4 +58,20 @@ export const SCHEMA = [
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_comments_garba (garba_id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS users (
+    email VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    avatar_url VARCHAR(500) NULL,
+    google_id VARCHAR(120) NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+  `CREATE TABLE IF NOT EXISTS user_favorites (
+    email VARCHAR(255) NOT NULL,
+    garba_id VARCHAR(120) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (email, garba_id),
+    INDEX idx_user_fav_email (email)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
 ];
+

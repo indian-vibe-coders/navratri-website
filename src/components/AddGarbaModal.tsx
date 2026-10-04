@@ -153,8 +153,8 @@ export const AddGarbaModal: React.FC<AddGarbaModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#600000] via-[#4A0000] to-[#2E0000] border-2 border-[#D4AF37] rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 text-[#FFF8ED] my-8">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#600000] via-[#4A0000] to-[#2E0000] border-2 border-[#D4AF37] rounded-3xl p-4 sm:p-8 shadow-2xl space-y-5 sm:space-y-6 text-[#FFF8ED] my-4 sm:my-8 max-h-[90vh] overflow-y-auto">
         
         {/* Close Button */}
         <button

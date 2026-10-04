@@ -42,8 +42,8 @@ export const AppContent: React.FC = () => {
   // Favorited songs from other library sections, which aren't in the Navratri list
   const [extraFavorites, setExtraFavorites] = useState<GarbaSummary[]>([]);
 
-  const { isAuthenticated, openAuthModal } = useAuth();
-  const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { user, isAuthenticated, openAuthModal } = useAuth();
+  const { favorites, toggleFavorite, isFavorite } = useFavorites(user?.email);
 
   // Load garba specified in URL (/garba/:slug) on mount or popstate
   const loadSongFromPath = useCallback(async (path: string) => {
@@ -183,7 +183,7 @@ export const AppContent: React.FC = () => {
   const handleToggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
     if (!isAuthenticated) {
-      openAuthModal('Please sign in with Google to save your favorite Garbas!');
+      openAuthModal('Please sign in to save your favorite Garbas!');
       return;
     }
     toggleFavorite(id);
@@ -191,7 +191,7 @@ export const AppContent: React.FC = () => {
 
   const handleAddCustomGarba = async (newGarba: Garba): Promise<boolean> => {
     try {
-      const saved = await postGarba(newGarba);
+      const saved = await postGarba(newGarba, user?.email);
       setRemoteGarbas((prev) => [saved, ...prev]);
       handleSelectGarba(saved, 'lyrics');
       return true;
@@ -208,7 +208,7 @@ export const AppContent: React.FC = () => {
         activeTab={activeTab}
         setActiveTab={(tab) => {
           if (tab === 'favorites' && !isAuthenticated) {
-            openAuthModal('Please sign in with Google to access your favorite Garbas!');
+            openAuthModal('Please sign in to access your favorite Garbas!');
             return;
           }
           goTo(tab);

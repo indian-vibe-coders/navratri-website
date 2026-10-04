@@ -63,19 +63,19 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
         </div>
 
         {/* Traditional Digital Book Outer Cover Frame - Devotional Garba Red & Gold */}
-        <div className="bg-[#6A0000] border-4 border-[#D4AF37] rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden text-[#FFF8ED]">
+        <div className="bg-[#6A0000] border-4 border-[#D4AF37] rounded-3xl p-4 sm:p-6 md:p-12 shadow-2xl relative overflow-hidden text-[#FFF8ED]">
           
           {/* Ornate Gold Corner Accent Highlights */}
-          <div className="absolute top-3 left-3 text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
-          <div className="absolute top-3 right-3 text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
-          <div className="absolute bottom-3 left-3 text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
-          <div className="absolute bottom-3 right-3 text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
+          <div className="absolute top-2 left-2 sm:top-3 sm:left-3 text-xl sm:text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 text-xl sm:text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
+          <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 text-xl sm:text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
+          <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 text-xl sm:text-2xl text-[#D4AF37] opacity-60 pointer-events-none">⚜️</div>
 
           {/* Garba Title Header Section */}
-          <div className="text-center space-y-4 pb-8 border-b-2 border-[#D4AF37]/30 relative z-10">
-            <div className="inline-flex items-center gap-2 bg-[#D4AF37]/20 border border-[#D4AF37] px-3.5 py-1.5 rounded-full text-xs font-bold text-[#D4AF37]">
+          <div className="text-center space-y-4 pb-6 sm:pb-8 border-b-2 border-[#D4AF37]/30 relative z-10">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#D4AF37]/20 border border-[#D4AF37] px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-[#D4AF37] max-w-full truncate">
               <span>🪔</span>
-              <span>
+              <span className="truncate">
                 {isLibrarySong
                   ? [sectionLabel(garba.collection, language), garba.subcollection && prettifySlug(garba.subcollection)]
                       .filter(Boolean)
@@ -86,7 +86,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
             </div>
 
             {/* Main Title - High Contrast White/Cream */}
-            <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFF8ED] leading-tight tracking-tight drop-shadow-md break-words max-w-full ${
+            <h1 className={`text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#FFF8ED] leading-tight tracking-tight drop-shadow-md break-words max-w-full ${
               language === 'gu' ? 'font-gujarati' : language === 'hi' ? 'font-hindi' : 'font-serif-title'
             }`}>
               {primaryTitle}
@@ -94,7 +94,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
 
             {/* Subtitle & Transliterations */}
             {secondaryTitle && (
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-base md:text-lg max-w-full overflow-hidden">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base md:text-lg max-w-full overflow-hidden">
                 <span className="font-serif-heading text-[#D4AF37] font-bold break-words max-w-full">
                   {secondaryTitle}
                 </span>
@@ -110,10 +110,10 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
             )}
 
             {/* Action Bar (Favorite & Share) */}
-            <div className="flex items-center justify-center gap-3 pt-4">
+            <div className="flex items-center justify-center gap-3 pt-3 sm:pt-4">
               <button
                 onClick={(e) => onToggleFavorite(garba.id, e)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all shadow-md ${
+                className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold border transition-all shadow-md ${
                   isFavorite
                     ? 'bg-[#B71C1C] text-[#FFF8ED] border-[#D4AF37]'
                     : 'bg-[#3B1111] text-[#D4AF37] border-[#D4AF37]/50 hover:bg-[#8B0000]'
@@ -125,7 +125,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
 
               <button
                 onClick={() => setShareModalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#3B1111] text-[#D4AF37] border border-[#D4AF37]/50 text-xs font-bold shadow-md hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-all"
+                className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl bg-[#3B1111] text-[#D4AF37] border border-[#D4AF37]/50 text-xs font-bold shadow-md hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-all"
               >
                 <Share2 className="w-4 h-4" />
                 <span>{t.lyricsView.shareGarba}</span>
@@ -134,7 +134,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
           </div>
 
           {/* Multilingual Lyrics Language Selector */}
-          <div className="relative z-10 my-6">
+          <div className="relative z-10 my-5 sm:my-6">
             <LyricsLanguageTabs
               activeTab={language}
               onTabChange={setLanguage}
@@ -142,7 +142,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
           </div>
 
           {/* Lyrics Verses & Chorus Column */}
-          <div className="mt-8 space-y-6 relative z-10">
+          <div className="mt-6 sm:mt-8 space-y-4 sm:space-y-6 relative z-10">
             {garba.lyrics.sections && garba.lyrics.sections.length > 0 ? (
               garba.lyrics.sections.map((section, idx) => {
                 const isChorus = section.type === 'chorus';
@@ -154,7 +154,7 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
                 return (
                   <div
                     key={idx}
-                    className={`rounded-2xl p-5 sm:p-6 md:p-8 space-y-4 transition-all relative overflow-hidden max-w-full ${
+                    className={`rounded-2xl p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4 transition-all relative overflow-hidden max-w-full ${
                       isChorus
                         ? 'bg-[#800000] border-2 border-[#D4AF37] shadow-xl text-[#FFF8ED]'
                         : 'bg-[#500000] border border-[#D4AF37]/40 text-[#FFF8ED]'

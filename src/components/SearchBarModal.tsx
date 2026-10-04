@@ -91,8 +91,8 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
   const resultCount = Math.max(filteredGarbas.length, remoteTotal);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 px-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#FFF7E8] border border-[#D4AF37]/30 rounded-2xl max-w-2xl w-full shadow-devotional overflow-hidden text-[#351010] flex flex-col max-h-[80vh]">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-8 sm:pt-16 px-3 sm:px-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="bg-[#FFF7E8] border border-[#D4AF37]/30 rounded-2xl max-w-2xl w-full shadow-devotional overflow-hidden text-[#351010] flex flex-col max-h-[85vh]">
         
         {/* Search Bar Header */}
         <div className="p-4 bg-[#351010] border-b border-[#D4AF37]/25 flex items-center gap-3">

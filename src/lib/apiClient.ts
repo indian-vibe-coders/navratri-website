@@ -100,13 +100,46 @@ export async function fetchSong(id: string): Promise<Garba> {
   return request<Garba>(`/songs/${encodeURIComponent(id)}`);
 }
 
-export async function postGarba(garba: Garba): Promise<Garba> {
+export async function postGarba(garba: Garba, userEmail?: string): Promise<Garba> {
   return request<Garba>('/garbas', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(garba),
+    body: JSON.stringify({ ...garba, userEmail }),
   });
 }
+
+export async function syncUser(user: { email: string; name: string; avatarUrl?: string; googleId?: string }): Promise<{
+  user: { email: string; name: string; avatarUrl?: string };
+  favorites: string[];
+}> {
+  return request('/users/sync', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  });
+}
+
+export async function getUserFavorites(email: string): Promise<string[]> {
+  const res = await request<{ favorites: string[] }>(`/users/favorites?email=${encodeURIComponent(email)}`);
+  return res.favorites || [];
+}
+
+export async function saveUserFavorite(email: string, garbaId: string): Promise<void> {
+  await request('/users/favorites', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, garbaId }),
+  });
+}
+
+export async function removeUserFavorite(email: string, garbaId: string): Promise<void> {
+  await request('/users/favorites', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, garbaId }),
+  });
+}
+
 
 export async function fetchComments(garbaId: string): Promise<AudioComment[]> {
   const list = await request<ApiComment[]>(`/garbas/${encodeURIComponent(garbaId)}/comments`);
