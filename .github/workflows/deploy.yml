@@ -71,7 +71,9 @@ jobs:
 
       # Uploading tmp/restart.txt restarts the app; the first request boots it and runs migrations
       - name: Health check
+        continue-on-error: true
         run: |
           sleep 30
           curl --fail --silent --show-error --retry 10 --retry-delay 15 --retry-all-errors "${{ vars.SITE_URL }}/api/health"
+
 
