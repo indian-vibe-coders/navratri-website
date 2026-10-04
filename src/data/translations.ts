@@ -6,6 +6,7 @@ export interface UIStrings {
   nav: {
     home: string;
     garbas: string;
+    library: string;
     lyrics: string;
     favorites: string;
     about: string;
@@ -109,11 +110,12 @@ export interface UIStrings {
 
 export const TRANSLATIONS: Record<Language, UIStrings> = {
   gu: {
-    brandName: 'નવસ્વર',
+    brandName: 'ગરબારાસ',
     tagline: 'નવરાત્રી ગરબા સાહિત્ય',
     nav: {
       home: 'મુખ્ય પૃષ્ઠ',
       garbas: 'ગરબા',
+      library: 'ભજન સંગ્રહ',
       lyrics: 'સાહિત્ય',
       favorites: 'પસંદગીદા',
       about: 'અમારા બારામાં',
@@ -202,10 +204,10 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     },
     about: {
       title: 'અમારા બારામાં',
-      subtitle: 'નવસ્વર - પવિત્ર ગુજરાતી ગરબા સાહિત્ય સંગ્રહાલય',
+      subtitle: 'ગરબારાસ - પવિત્ર ગુજરાતી ગરબા સાહિત્ય સંગ્રહાલય',
       missionTitle: 'અમારો હેતુ',
       missionText:
-        'નવસ્વરનો મુખ્ય ઉદ્દેશ્ય ગુજરાતી સંસ્કૃતિ અને નવરાત્રીના પવિત્ર ગરબા સાહિત્યને શુદ્ધ રૂપમાં સાચવવાનો અને નવી પેઢી સુધી પહોંચાડવાનો છે.',
+        'ગરબારાસનો મુખ્ય ઉદ્દેશ્ય ગુજરાતી સંસ્કૃતિ અને નવરાત્રીના પવિત્ર ગરબા સાહિત્યને શુદ્ધ રૂપમાં સાચવવાનો અને નવી પેઢી સુધી પહોંચાડવાનો છે.',
       audioPurposeTitle: 'ઓડિયો રેફરન્સ વાપરો',
       audioPurposeText:
         'દરેક ગરબા માટે આપ પોતાનો સ્વર રેકોર્ડ કરી શકો છો અને તેના સાચા ઢાળ અને તાલને પ્રેક્ટિસ કરી શકો છો.',
@@ -216,17 +218,18 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     footer: {
       brandText:
         'ગુજરાતી નવરાત્રી ગરબા અને ભક્તિ સાહિત્યનું પવિત્ર ડિજિટલ સંગ્રહાલય.',
-      copyright: '© નવસ્વર. મા આદ્યાશક્તિ ચરણોમાં સમર્પિત.',
+      copyright: '© ગરબારાસ. મા આદ્યાશક્તિ ચરણોમાં સમર્પિત.',
       disclaimer:
-        'નવસ્વર એ ગુજરાતી ગરબા સાહિત્ય સંરક્ષણ માટેનું ડિજિટલ પ્લેટફોર્મ છે.',
+        'ગરબારાસ એ ગુજરાતી ગરબા સાહિત્ય સંરક્ષણ માટેનું ડિજિટલ પ્લેટફોર્મ છે.',
     },
   },
   hi: {
-    brandName: 'नवस्वर',
+    brandName: 'गरबारास',
     tagline: 'नवरात्रि गरबा साहित्य',
     nav: {
       home: 'मुख्य पृष्ठ',
       garbas: 'गरबा',
+      library: 'भजन संग्रह',
       lyrics: 'साहित्य',
       favorites: 'पसंदीदा',
       about: 'हमारे बारे में',
@@ -315,10 +318,10 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     },
     about: {
       title: 'हमारे बारे में',
-      subtitle: 'नवस्वर - पवित्र गुजराती गरबा साहित्य संग्रहालय',
+      subtitle: 'गरबारास - पवित्र गुजराती गरबा साहित्य संग्रहालय',
       missionTitle: 'हमारा उद्देश्य',
       missionText:
-        'नवस्वर का मुख्य उद्देश्य गुजराती संस्कृति और नवरात्रि के पावन गरबा साहित्य को शुद्ध रूप में संरक्षित करना है।',
+        'गरबारास का मुख्य उद्देश्य गुजराती संस्कृति और नवरात्रि के पावन गरबा साहित्य को शुद्ध रूप में संरक्षित करना है।',
       audioPurposeTitle: 'ऑडियो रेफरेंस का उपयोग',
       audioPurposeText:
         'प्रत्येक गरबा के लिए आप अपना स्वर रिकॉर्ड करके सही लय और ताल का अभ्यास कर सकते हैं।',
@@ -329,17 +332,18 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     footer: {
       brandText:
         'गुजराती नवरात्रि गरबा एवं भक्ति साहित्य का पवित्र डिजिटल संग्रह।',
-      copyright: '© नवस्वर। मां आद्याशक्ति चरणों में समर्पित।',
+      copyright: '© गरबारास। मां आद्याशक्ति चरणों में समर्पित।',
       disclaimer:
-        'नवस्वर गुजराती गरबा साहित्य संरक्षण का डिजिटल मंच है।',
+        'गरबारास गुजराती गरबा साहित्य संरक्षण का डिजिटल मंच है।',
     },
   },
   en: {
-    brandName: 'NavSwar',
+    brandName: 'Garbaraas',
     tagline: 'Navratri Garba Literature',
     nav: {
       home: 'Home',
       garbas: 'Garbas',
+      library: 'Library',
       lyrics: 'Lyrics',
       favorites: 'Favorites',
       about: 'About Us',
@@ -402,9 +406,9 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
       linkCopied: 'Link Copied!',
     },
     attribution: {
-      sourceLabel: 'Devotional Literature',
-      viewOriginal: 'Devotional Library',
-      disclaimer: 'Preserving Gujarati devotional literature and cultural heritage for Navratri.',
+      sourceLabel: 'Garba Literature',
+      viewOriginal: 'Garba Library',
+      disclaimer: 'Preserving traditional Gujarati Garba literature and cultural heritage for Navratri.',
     },
     navdurga: {
       sectionTitle: '9 Forms of Navdurga',
@@ -428,10 +432,10 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     },
     about: {
       title: 'About Us',
-      subtitle: 'NavSwar - Sacred Gujarati Garba Digital Library',
+      subtitle: 'GarbaRaas - Sacred Gujarati Garba Digital Library',
       missionTitle: 'Our Mission',
       missionText:
-        'NavSwar is dedicated to preserving traditional Gujarati Navratri Garba literature in its purest form.',
+        'GarbaRaas is dedicated to preserving traditional Gujarati Navratri Garba literature in its purest form.',
       audioPurposeTitle: 'Voice Reference Feature',
       audioPurposeText:
         'Record your own voice to practice rhythm and learn complex traditional Garba compositions.',
@@ -442,9 +446,9 @@ export const TRANSLATIONS: Record<Language, UIStrings> = {
     footer: {
       brandText:
         'A sacred digital repository dedicated to preserving traditional Gujarati Navratri Garba literature.',
-      copyright: '© NavSwar. Dedicated to Goddess Adyashakti Maa Durga.',
+      copyright: '© GarbaRaas. Dedicated to Goddess Adyashakti Maa Durga.',
       disclaimer:
-        'NavSwar is an open digital platform for Gujarati Garba literature.',
+        'GarbaRaas is an open digital platform for Gujarati Garba literature.',
     },
   },
 };

@@ -25,8 +25,8 @@ export const CategoryPills: React.FC<CategoryPillsProps> = ({
   ];
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
         {categories.map((cat) => {
           const Icon = cat.icon;
           const isActive = activeCategory === cat.id;
@@ -41,13 +41,13 @@ export const CategoryPills: React.FC<CategoryPillsProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 whitespace-nowrap shadow-md border ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap border ${
                 isActive
-                  ? 'bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] text-[#3B1111] border-[#FFF8ED] shadow-lg shadow-[#600000]/60 scale-105 font-extrabold'
-                  : 'bg-[#6A0000] text-[#FFF8ED]/90 border-[#D4AF37]/40 hover:bg-[#800000] hover:text-[#FFF8ED] hover:border-[#D4AF37]'
+                  ? 'bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#351010] border-[#D4AF37] shadow-md font-extrabold'
+                  : 'bg-[#5A0808]/70 text-[#FFF7E8]/90 border-[#D4AF37]/25 hover:bg-[#6A0909] hover:border-[#D4AF37]/50'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-[#D4AF37]' : 'text-[#D4AF37]/70'}`} />
+              <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#351010]' : 'text-[#D4AF37]'}`} />
               <span>{label}</span>
             </button>
           );

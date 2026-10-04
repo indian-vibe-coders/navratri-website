@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Hero } from '../components/Hero';
 import { CategoryPills } from '../components/CategoryPills';
 import { PopularSongsCarousel } from '../components/PopularSongsCarousel';
-import type { Garba } from '../types';
+import type { GarbaSummary } from '../types';
 
 interface HomeProps {
-  garbas: Garba[];
-  featuredGarba: Garba;
-  onSelectGarba: (garba: Garba, tab?: 'lyrics' | 'audio') => void;
+  garbas: GarbaSummary[];
+  featuredGarba: GarbaSummary;
+  onSelectGarba: (garba: GarbaSummary, tab?: 'lyrics' | 'audio') => void;
   isFavorite: (id: string) => boolean;
   onToggleFavorite: (id: string, e: React.MouseEvent) => void;
   onNavigateToGarbas: () => void;
@@ -20,12 +20,15 @@ export const Home: React.FC<HomeProps> = ({
   onNavigateToGarbas,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [activeGarba, setActiveGarba] = useState<Garba>(featuredGarba);
+  const [activeGarba, setActiveGarba] = useState<GarbaSummary>(featuredGarba);
 
-  const filteredGarbas = garbas.filter((g) => {
-    if (selectedCategory === 'All') return true;
-    return g.category === selectedCategory || g.tags.includes(selectedCategory);
-  });
+  // The carousel shows a handful, not all ~500 garbas
+  const filteredGarbas = garbas
+    .filter((g) => {
+      if (selectedCategory === 'All') return true;
+      return g.category === selectedCategory || g.tags.includes(selectedCategory);
+    })
+    .slice(0, 20);
 
   return (
     <div className="bg-[#800000] text-[#FFF8ED] min-h-screen space-y-10 pb-16">

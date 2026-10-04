@@ -1,0 +1,79 @@
+name: CI / Deploy to MilesWeb
+
+on:
+  pull_request:
+  push:
+    # milesweb-migration deploys to the MilesWeb staging site while Vercel still serves main.
+    # After the switch-over is done, remove it so only main deploys.
+    branches: [main, milesweb-migration]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run build:server
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: |
+            dist
+            server/dist
+          include-hidden-files: true
+          retention-days: 7
+
+  deploy:
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: milesweb
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+
+      # FTP paths are relative to the FTP account's home folder (/home/<cpaneluser>/).
+      # Only files this action uploaded earlier are ever deleted, so .env, uploads and
+      # cPanel-managed files are left alone.
+      - name: Deploy API
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: ${{ vars.FTP_SECURITY || 'strict' }}
+          local-dir: server/dist/
+          server-dir: ${{ vars.API_DIR || 'navswar-api/' }}
+
+      - name: Deploy frontend
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: ${{ vars.FTP_SECURITY || 'strict' }}
+          local-dir: dist/
+          server-dir: ${{ vars.WEB_DIR || 'public_html/' }}
+
+      # Uploading tmp/restart.txt restarts the app; the first request boots it and runs migrations
+      - name: Health check
+        continue-on-error: true
+        run: |
+          sleep 30
+          curl --fail --silent --show-error --retry 10 --retry-delay 15 --retry-all-errors "${{ vars.SITE_URL }}/api/health"
+
+

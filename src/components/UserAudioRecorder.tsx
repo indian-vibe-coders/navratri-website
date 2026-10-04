@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useUserAudio } from '../hooks/useUserAudio';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 interface UserAudioRecorderProps {
   garbaId: string;
@@ -24,6 +25,7 @@ interface UserAudioRecorderProps {
 
 export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, title }) => {
   const { t } = useLanguage();
+  const { isAuthenticated, openAuthModal } = useAuth();
   const { audioState, startRecording, stopRecording, uploadAudioFile, removeAudio } =
     useUserAudio(garbaId);
 
@@ -92,6 +94,22 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
     const m = Math.floor(sec / 60);
     const s = sec % 60;
     return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
+  const handleStartRecording = () => {
+    if (!isAuthenticated) {
+      openAuthModal('Please sign in with Google to record your voice reference!');
+      return;
+    }
+    startRecording();
+  };
+
+  const handleUploadClick = () => {
+    if (!isAuthenticated) {
+      openAuthModal('Please sign in with Google to upload an audio reference!');
+      return;
+    }
+    fileInputRef.current?.click();
   };
 
   return (
@@ -261,7 +279,7 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
           {/* Action Row: Re-Record or Remove Audio */}
           <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <button
-              onClick={startRecording}
+              onClick={handleStartRecording}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#3B1111] text-[#D4AF37] border border-[#D4AF37]/60 text-xs font-bold hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-all shadow-md"
             >
               <RotateCcw className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -289,7 +307,7 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
             
             {/* Live Microphone Record Button */}
             <button
-              onClick={startRecording}
+              onClick={handleStartRecording}
               className="flex items-center justify-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-[#8B0000] to-[#B71C1C] text-[#FFF8ED] border-2 border-[#D4AF37] font-bold text-sm shadow-xl hover:scale-102 active:scale-98 transition-all group"
             >
               <div className="w-10 h-10 rounded-full bg-[#3B1111] border border-[#D4AF37] flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -305,7 +323,7 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
 
             {/* Audio File Upload Button */}
             <button
-              onClick={() => fileInputRef.current?.click()}
+              onClick={handleUploadClick}
               className="flex items-center justify-center gap-3 p-4 rounded-2xl bg-[#1A0505] text-[#D4AF37] border-2 border-[#D4AF37]/70 font-bold text-sm shadow-xl hover:bg-[#3B1111] hover:text-[#FFF8ED] transition-all group"
             >
               <div className="w-10 h-10 rounded-full bg-[#3B1111] border border-[#D4AF37]/50 flex items-center justify-center group-hover:scale-110 transition-transform">

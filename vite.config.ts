@@ -11,5 +11,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    // `npm run dev:server` runs the API locally on port 3001
+    proxy: {
+      '/api': 'http://localhost:3001',
+    },
+  },
 })
 

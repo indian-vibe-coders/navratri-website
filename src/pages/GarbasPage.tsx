@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search, Music, Sparkles, Filter } from 'lucide-react';
 import { GarbaCard } from '../components/GarbaCard';
 import { CategoryFilter } from '../components/CategoryFilter';
-import type { Garba, GarbaCategory } from '../types';
+import type { GarbaSummary, GarbaCategory } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
+const PAGE_SIZE = 24;
+
 interface GarbasPageProps {
-  garbas: Garba[];
-  onSelectGarba: (garba: Garba, tab?: 'lyrics' | 'audio') => void;
+  garbas: GarbaSummary[];
+  onSelectGarba: (garba: GarbaSummary, tab?: 'lyrics' | 'audio') => void;
   isFavorite: (id: string) => boolean;
   onToggleFavorite: (id: string, e: React.MouseEvent) => void;
   onOpenAddGarba?: () => void;
@@ -23,6 +25,9 @@ export const GarbasPage: React.FC<GarbasPageProps> = ({
   const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<GarbaCategory>('All');
+  // ~500 garbas: render a page at a time so the grid stays fast
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => setVisibleCount(PAGE_SIZE), [searchQuery, selectedCategory]);
 
   const filteredGarbas = garbas.filter((g) => {
     const matchesCategory =
@@ -103,17 +108,29 @@ export const GarbasPage: React.FC<GarbasPageProps> = ({
 
       {/* Garba Cards Grid */}
       {filteredGarbas.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGarbas.map((garba) => (
-            <GarbaCard
-              key={garba.id}
-              garba={garba}
-              onSelect={onSelectGarba}
-              isFavorite={isFavorite(garba.id)}
-              onToggleFavorite={onToggleFavorite}
-            />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredGarbas.slice(0, visibleCount).map((garba) => (
+              <GarbaCard
+                key={garba.id}
+                garba={garba}
+                onSelect={onSelectGarba}
+                isFavorite={isFavorite(garba.id)}
+                onToggleFavorite={onToggleFavorite}
+              />
+            ))}
+          </div>
+          {visibleCount < filteredGarbas.length && (
+            <div className="flex justify-center">
+              <button
+                onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold text-xs shadow-lg hover:brightness-110"
+              >
+                Show more ({filteredGarbas.length - visibleCount} more)
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="bg-[#FFF8ED] border-2 border-[#D4AF37]/30 rounded-3xl p-12 text-center space-y-3">
           <Music className="w-12 h-12 text-[#D4AF37] mx-auto opacity-70" />

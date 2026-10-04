@@ -13,6 +13,10 @@ dist-ssr
 *.local
 .env
 .env.*
+!.env.example
+migration-data/
+# Scraped LokDayro source data (large, third-party content); build with `npm run library:build`
+output/
 .agents/
 skills-lock.json
 
@@ -27,3 +31,7 @@ skills-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+# Backend build output and local audio uploads
+server/dist
+uploads/

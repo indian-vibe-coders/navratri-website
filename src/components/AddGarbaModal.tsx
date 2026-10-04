@@ -6,7 +6,8 @@ import { useLanguage } from '../context/LanguageContext';
 interface AddGarbaModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onAddGarba: (newGarba: Garba) => void;
+  /** Resolves true once saved; the modal stays open on failure so nothing typed is lost. */
+  onAddGarba: (newGarba: Garba) => Promise<boolean>;
 }
 
 // Preset Covers for Quick Devotional Selection
@@ -62,6 +63,7 @@ export const AddGarbaModal: React.FC<AddGarbaModalProps> = ({
   const [stanzaGu, setStanzaGu] = useState('');
   const [stanzaHi, setStanzaHi] = useState('');
   const [stanzaEn, setStanzaEn] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
@@ -81,8 +83,9 @@ export const AddGarbaModal: React.FC<AddGarbaModalProps> = ({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     if (!titleGu.trim() || !stanzaGu.trim()) {
       alert('Please enter at least Gujarati title and Gujarati lyrics stanza!');
       return;
@@ -143,13 +146,15 @@ export const AddGarbaModal: React.FC<AddGarbaModalProps> = ({
       },
     };
 
-    onAddGarba(newGarba);
-    onClose();
+    setIsSubmitting(true);
+    const saved = await onAddGarba(newGarba);
+    setIsSubmitting(false);
+    if (saved) onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#600000] via-[#4A0000] to-[#2E0000] border-2 border-[#D4AF37] rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 text-[#FFF8ED] my-8">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#600000] via-[#4A0000] to-[#2E0000] border-2 border-[#D4AF37] rounded-3xl p-4 sm:p-8 shadow-2xl space-y-5 sm:space-y-6 text-[#FFF8ED] my-4 sm:my-8 max-h-[90vh] overflow-y-auto">
         
         {/* Close Button */}
         <button
@@ -351,10 +356,11 @@ export const AddGarbaModal: React.FC<AddGarbaModalProps> = ({
             </button>
             <button
               type="submit"
-              className="flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold px-6 py-2.5 rounded-xl shadow-lg hover:brightness-110 text-xs"
+              disabled={isSubmitting}
+              className="flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold px-6 py-2.5 rounded-xl shadow-lg hover:brightness-110 text-xs disabled:opacity-60"
             >
               <Plus className="w-4 h-4" />
-              <span>Publish Devotional Garba</span>
+              <span>{isSubmitting ? 'Publishing...' : 'Publish Devotional Garba'}</span>
             </button>
           </div>
         </form>

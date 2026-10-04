@@ -42,6 +42,8 @@ export interface LyricsSource {
 
 export interface Garba {
   id: string;
+  slug?: string;
+  isBuiltin?: boolean;
   title: {
     gu: string;
     hi: string;
@@ -66,6 +68,19 @@ export interface Garba {
   audioReference?: AudioReference;
   lyricsSource: LyricsSource;
   artworkUrl: string;
+  /** Library section slug, e.g. "navratri", "gujarati-artist" (see data/library.ts) */
+  collection?: string;
+  /** Artist / raga / sub-collection slug within the section */
+  subcollection?: string;
+}
+
+/** What list endpoints return: everything except the (large) lyrics. */
+export type GarbaSummary = Omit<Garba, 'lyrics' | 'audioReference'>;
+
+export interface LibrarySection {
+  slug: string;
+  count: number;
+  subcollections: { slug: string; count: number }[];
 }
 
 export interface Navdurga {

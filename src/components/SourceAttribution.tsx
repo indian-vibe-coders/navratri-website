@@ -1,39 +1,51 @@
 import React from 'react';
-import { BookmarkCheck } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import type { LyricsSource } from '../types';
 
 interface SourceAttributionProps {
-  source: LyricsSource;
+  source?: LyricsSource;
+  onNavigateLibrary?: () => void;
 }
 
-export const SourceAttribution: React.FC<SourceAttributionProps> = ({ source }) => {
+export const SourceAttribution: React.FC<SourceAttributionProps> = ({
+  source,
+}) => {
   const { t } = useLanguage();
 
   return (
-    <div className="bg-[#FFF8ED] border-2 border-[#D4AF37]/40 rounded-2xl p-4 md:p-5 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 my-6">
-      <div className="flex items-start gap-3">
-        <div className="w-9 h-9 rounded-xl bg-[#8B0000]/10 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B0000] shrink-0 mt-0.5">
-          <BookmarkCheck className="w-5 h-5" />
+    <div className="w-full max-w-xl mx-auto my-8 bg-[#500000] text-[#FFF8ED] rounded-2xl p-5 md:p-6 shadow-lg border border-[#D4AF37]/50 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex items-start gap-3.5">
+        <div className="w-10 h-10 rounded-xl bg-[#3B1111] border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shrink-0 shadow-inner mt-0.5">
+          <BookOpen className="w-5 h-5 text-[#D4AF37]" />
         </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-[#8B0000] uppercase tracking-wider">
-              {t.attribution.sourceLabel}
+            <span className="text-[11px] font-serif-title font-bold text-[#D4AF37] uppercase tracking-wider">
+              {t.attribution.sourceLabel || 'Garba Literature'}
             </span>
-            <span className="text-xs font-bold text-[#3B1111] bg-[#D4AF37]/20 px-2 py-0.5 rounded-md border border-[#D4AF37]/40">
-              {source.name}
-            </span>
+            {source?.name && (
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#D4AF37]/20 text-[#D4AF37] px-2 py-0.5 rounded border border-[#D4AF37]/30">
+                {source.name}
+              </span>
+            )}
           </div>
-          <p className="text-xs text-[#3B1111]/70 font-gujarati mt-1 leading-relaxed">
-            {t.attribution.disclaimer}
+          <p className="text-sm text-[#FFF8ED]/90 font-serif-heading mt-1 leading-relaxed">
+            {t.attribution.disclaimer || 'Preserving Gujarati Garba literature and cultural heritage for Navratri.'}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#8B0000] to-[#B71C1C] text-[#FFF8ED] text-xs font-semibold shadow-md border border-[#D4AF37] whitespace-nowrap self-stretch sm:self-auto justify-center">
-        <span>{t.attribution.viewOriginal}</span>
-      </div>
+      <a
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          window.history.pushState(null, '', '/');
+        }}
+        className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] text-xs font-bold shadow-md hover:brightness-110 active:scale-95 transition-all shrink-0 self-stretch sm:self-auto whitespace-nowrap"
+      >
+        <span>{t.attribution.viewOriginal || 'GARBA LITERATURE →'}</span>
+      </a>
     </div>
   );
 };
