@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, Heart, Globe, Menu, X, BookOpen, Music, Info, LogIn, LogOut, Library } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Search, Globe, Menu, X, LogIn, LogOut, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import type { Language } from '../types';
@@ -24,12 +24,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const navItemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
+
   const navItems = [
-    { id: 'home', label: t.nav.home, icon: Music },
-    { id: 'garbas', label: t.nav.garbas, icon: BookOpen },
-    { id: 'library', label: t.nav.library, icon: Library },
-    { id: 'favorites', label: t.nav.favorites, icon: Heart, badge: favoritesCount },
-    { id: 'about', label: t.nav.about, icon: Info },
+    { id: 'home', label: t.nav.home },
+    { id: 'garbas', label: t.nav.garbas },
+    { id: 'library', label: t.nav.library },
+    { id: 'favorites', label: t.nav.favorites, badge: favoritesCount },
+    { id: 'about', label: t.nav.about },
   ];
 
   const languages: { id: Language; label: string }[] = [
@@ -38,94 +42,132 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'en', label: 'English' },
   ];
 
+  // Update sliding gold line indicator whenever activeTab or window resizes
+  useEffect(() => {
+    const updateIndicator = () => {
+      const activeEl = navItemRefs.current[activeTab];
+      const containerEl = navContainerRef.current;
+      if (activeEl && containerEl) {
+        const activeRect = activeEl.getBoundingClientRect();
+        const containerRect = containerEl.getBoundingClientRect();
+        setIndicatorStyle({
+          left: activeRect.left - containerRect.left,
+          width: activeRect.width,
+        });
+      } else {
+        setIndicatorStyle({ left: 0, width: 0 });
+      }
+    };
+
+    updateIndicator();
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [activeTab, language, favoritesCount]);
+
   return (
-    <header className="sticky top-0 z-40 bg-[#6A0000]/95 backdrop-blur-xl border-b border-[#D4AF37]/40 shadow-xl text-[#FFF8ED]">
+    <header className="sticky top-0 z-40 bg-[#5A0808] border-b border-[#D4AF37]/30 shadow-md text-[#FFF7E8]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16 sm:h-18">
           
-          {/* Brand Logo & Title */}
+          {/* LEFT: Logo & Branding */}
           <button
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-3.5 group text-left focus:outline-none"
+            className="flex items-center gap-3 group text-left focus:outline-none flex-shrink-0"
           >
-            <div className="w-12 h-12 rounded-2xl overflow-hidden border border-[#D4AF37] shadow-lg group-hover:scale-105 transition-transform bg-[#4A0000] p-0.5">
-              <img src={navswarLogo} alt="NavSwar Divine Logo" className="w-full h-full object-cover rounded-xl" />
+            <div className="w-10 h-10 rounded-xl overflow-hidden border border-[#D4AF37]/60 shadow-md group-hover:scale-105 transition-transform bg-[#3B0505] p-0.5">
+              <img src={navswarLogo} alt="GarbaRaas Logo" className="w-full h-full object-cover rounded-lg" />
             </div>
             <div>
-              <span className="font-serif-title text-2xl font-extrabold text-gold-gradient tracking-wide block leading-tight">
+              <span className="font-serif-title text-xl sm:text-2xl font-extrabold text-[#FFF8ED] tracking-wide block leading-tight group-hover:text-[#D4AF37] transition-colors">
                 {t.brandName}
               </span>
-              <span className="text-[9px] uppercase font-extrabold text-[#D4AF37] tracking-[0.2em] block opacity-90 mt-0.5">
+              <span className="text-[9px] uppercase font-bold text-[#D4AF37] tracking-[0.22em] block opacity-85 mt-0.5">
                 SONGS • LYRICS • BHAKTI
               </span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5 bg-[#3B0505]/60 p-1.5 rounded-2xl border border-[#D4AF37]/25 shadow-inner">
+          {/* CENTER: Text Navigation Links with Smooth Sliding Golden Underline */}
+          <nav ref={navContainerRef} className="hidden md:flex items-center gap-6 lg:gap-8 relative">
             {navItems.map((item) => {
-              const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
                 <button
                   key={item.id}
+                  ref={(el) => {
+                    navItemRefs.current[item.id] = el;
+                  }}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 relative ${
+                  className={`relative py-2 text-sm font-medium tracking-wide transition-colors duration-250 flex items-center gap-1.5 ${
                     isActive
-                      ? 'bg-[#800000] text-[#FFF8ED] border border-[#D4AF37] shadow-md'
-                      : 'text-[#FFF8ED]/80 hover:text-[#FFF8ED] hover:bg-[#800000]/40'
+                      ? 'text-[#D4AF37] font-bold'
+                      : 'text-[#FFF8ED]/80 hover:text-[#D4AF37]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#D4AF37]' : ''}`} />
                   <span>{item.label}</span>
+
+                  {/* Favorites Count Badge */}
                   {item.badge !== undefined && item.badge > 0 && (
-                    <span className="ml-1 bg-[#B71C1C] text-[#FFF8ED] text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-[#D4AF37]/80">
+                    <span className="bg-[#8B0000] text-[#D4AF37] text-[10px] font-bold px-1.5 py-0.2 rounded-full border border-[#D4AF37]/60">
                       {item.badge}
                     </span>
                   )}
                 </button>
               );
             })}
+
+            {/* Smooth Sliding Active Gold Underline Accent */}
+            <span
+              className="absolute bottom-0 h-[2.5px] bg-gradient-to-r from-[#D4AF37]/40 via-[#D4AF37] to-[#D4AF37]/40 rounded-full transition-all duration-300 ease-out pointer-events-none shadow-[0_0_8px_rgba(212,175,55,0.6)]"
+              style={{
+                left: `${indicatorStyle.left}px`,
+                width: `${indicatorStyle.width}px`,
+                opacity: indicatorStyle.width > 0 ? 1 : 0,
+              }}
+            />
           </nav>
 
-          {/* Right Tools: Language Switcher, Clean Search & Profile/Sign In */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* RIGHT: Language Selector, Clean Search Icon & Sign In */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
             
-            {/* Direct Language Switcher Bar on Homepage (Available Before Sign In) */}
-            <div className="flex items-center bg-[#3B0505]/90 border border-[#D4AF37]/40 rounded-xl p-1 shadow-sm">
-              <Globe className="w-3.5 h-3.5 text-[#D4AF37] ml-1.5 mr-1" />
-              {languages.map((lang) => (
-                <button
-                  key={lang.id}
-                  onClick={() => setLanguage(lang.id)}
-                  className={`px-2 py-1 rounded-lg text-[11px] font-extrabold transition-all ${
-                    language === lang.id
-                      ? 'bg-[#D4AF37] text-[#3B1111] shadow-sm'
-                      : 'text-[#FFF8ED]/75 hover:text-[#FFF8ED]'
-                  }`}
-                >
-                  {lang.label}
-                </button>
+            {/* 1. Language Selector: Clean inline text with gold vertical dividers */}
+            <div className="flex items-center text-xs text-[#FFF8ED]/70 font-medium">
+              {languages.map((lang, idx) => (
+                <React.Fragment key={lang.id}>
+                  {idx > 0 && <span className="text-[#D4AF37]/40 mx-2 font-normal">|</span>}
+                  <button
+                    onClick={() => setLanguage(lang.id)}
+                    className={`transition-colors py-1 ${
+                      language === lang.id
+                        ? 'text-[#D4AF37] font-bold underline underline-offset-4 decoration-[#D4AF37]/80'
+                        : 'hover:text-[#FFF8ED]'
+                    }`}
+                  >
+                    {lang.label}
+                  </button>
+                </React.Fragment>
               ))}
             </div>
 
-            {/* Clean Quick Search Button */}
+            {/* Subtle Vertical Divider */}
+            <div className="h-4 w-[1px] bg-[#D4AF37]/30" />
+
+            {/* 2. Search Icon Button */}
             <button
               onClick={onOpenSearch}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#3B0505]/80 border border-[#D4AF37]/40 text-xs text-[#FFF8ED]/90 hover:text-[#FFF8ED] hover:border-[#D4AF37] transition-all shadow-sm"
+              className="p-2 rounded-lg text-[#FFF8ED]/85 hover:text-[#D4AF37] hover:bg-[#800000]/40 transition-all focus:outline-none"
               title="Search Garbas"
             >
-              <Search className="w-4 h-4 text-[#D4AF37]" />
-              <span className="font-medium max-w-[130px] truncate">{t.nav.searchPlaceholder}</span>
+              <Search className="w-5 h-5" />
             </button>
 
-            {/* Profile Dropdown or Sign In Button */}
+            {/* 3. Sign In / Profile */}
             {!isAuthenticated ? (
               <button
                 onClick={() => openAuthModal()}
-                className="flex items-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold px-4 py-2 rounded-xl shadow-md hover:brightness-105 text-xs transition-all border border-[#FFF8ED]/50"
+                className="flex items-center gap-2 bg-[#FFF8ED] hover:bg-[#F3E5AB] text-[#4A0000] font-bold px-4 py-2 rounded-xl shadow-sm text-xs transition-all hover:-translate-y-0.5 border border-[#D4AF37]/40"
               >
-                <LogIn className="w-4 h-4 text-[#3B1111]" />
+                <LogIn className="w-3.5 h-3.5 text-[#4A0000]" />
                 <span>
                   {language === 'gu' ? 'સાઇન ઇન' : language === 'hi' ? 'साइन इन' : 'Sign In'}
                 </span>
@@ -134,80 +176,65 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="relative">
                 <button
                   onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center gap-2.5 bg-[#3B0505]/80 border border-[#D4AF37] p-1.5 pr-3 rounded-xl hover:bg-[#500000] transition-colors shadow-md"
+                  className="flex items-center gap-2 bg-[#4A0505] border border-[#D4AF37]/50 p-1.5 pr-2.5 rounded-xl hover:bg-[#600000] transition-colors shadow-sm"
                 >
                   <img
                     src={user?.avatarUrl}
                     alt={user?.name}
-                    className="w-7 h-7 rounded-lg border border-[#D4AF37] bg-[#500000]"
+                    className="w-6 h-6 rounded-lg border border-[#D4AF37]/60 bg-[#500000]"
                   />
-                  <span className="text-xs font-bold text-[#FFF8ED] max-w-[110px] truncate">
+                  <span className="text-xs font-bold text-[#FFF8ED] max-w-[90px] truncate">
                     {user?.name}
                   </span>
+                  <ChevronDown className="w-3.5 h-3.5 text-[#D4AF37]" />
                 </button>
 
-                {/* Profile Settings Dropdown */}
                 {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-56 bg-[#4A0000] border-2 border-[#D4AF37] rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in space-y-2">
-                    <div className="px-3 py-2 border-b border-[#D4AF37]/30">
+                  <div className="absolute right-0 mt-2 w-48 bg-[#4A0505] border border-[#D4AF37]/60 rounded-xl shadow-xl p-2 z-50 animate-in fade-in space-y-1">
+                    <div className="px-3 py-2 border-b border-[#D4AF37]/20">
                       <p className="text-xs font-bold text-[#FFF8ED] truncate">{user?.name}</p>
                       <p className="text-[10px] text-[#D4AF37] truncate">{user?.email}</p>
                     </div>
 
-                    {/* Language Selector inside Profile Menu */}
-                    <div className="px-3 py-1.5">
-                      <p className="text-[10px] font-bold text-[#D4AF37] uppercase tracking-wider mb-1.5 flex items-center gap-1">
-                        <Globe className="w-3.5 h-3.5" /> Language / ભાષા
-                      </p>
-                      <div className="grid grid-cols-3 gap-1">
-                        {languages.map((lang) => (
-                          <button
-                            key={lang.id}
-                            onClick={() => {
-                              setLanguage(lang.id);
-                            }}
-                            className={`py-1 rounded-lg text-[11px] font-bold transition-all ${
-                              language === lang.id
-                                ? 'bg-[#D4AF37] text-[#3B1111] shadow-sm'
-                                : 'bg-[#300000] text-[#FFF8ED]/70 hover:text-[#FFF8ED]'
-                            }`}
-                          >
-                            {lang.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="border-t border-[#D4AF37]/30 pt-1">
-                      <button
-                        onClick={() => {
-                          logout();
-                          setShowProfileMenu(false);
-                        }}
-                        className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-300 hover:bg-[#800000] transition-colors"
-                      >
-                        <LogOut className="w-4 h-4 text-red-400" />
-                        <span>Sign Out</span>
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold text-red-300 hover:bg-[#700000] transition-colors"
+                    >
+                      <LogOut className="w-3.5 h-3.5 text-red-400" />
+                      <span>Sign Out</span>
+                    </button>
                   </div>
                 )}
               </div>
             )}
+
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          {/* MOBILE / TABLET UTILITY BAR */}
+          <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={onOpenSearch}
-              className="p-2.5 rounded-xl bg-[#3B0505] border border-[#D4AF37]/40 text-[#D4AF37]"
+              className="p-2 text-[#FFF8ED]/90 hover:text-[#D4AF37]"
             >
               <Search className="w-5 h-5" />
             </button>
 
+            {!isAuthenticated && (
+              <button
+                onClick={() => openAuthModal()}
+                className="flex items-center gap-1.5 bg-[#FFF8ED] text-[#4A0000] font-bold px-3 py-1.5 rounded-lg text-xs shadow-sm"
+              >
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Sign In</span>
+              </button>
+            )}
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-[#800000] border border-[#D4AF37] text-[#FFF8ED]"
+              className="p-2 text-[#FFF8ED] hover:text-[#D4AF37]"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -216,12 +243,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* MOBILE NAVIGATION DRAWER */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#3A0000] border-b-2 border-[#D4AF37] p-4 space-y-4 animate-in slide-in-from-top duration-200">
-          <div className="grid grid-cols-2 gap-2">
+        <div className="md:hidden bg-[#4A0505] border-b border-[#D4AF37]/40 p-4 space-y-4 animate-in slide-in-from-top duration-200">
+          <div className="flex flex-col space-y-2">
             {navItems.map((item) => {
-              const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
                 <button
@@ -230,73 +256,69 @@ export const Navbar: React.FC<NavbarProps> = ({
                     setActiveTab(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold border ${
+                  className={`flex items-center justify-between p-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-[#800000] text-[#FFF8ED] border-[#D4AF37]'
-                      : 'bg-[#2A0000] text-[#FFF8ED]/80 border-[#D4AF37]/20'
+                      ? 'bg-[#700000] text-[#D4AF37] font-bold border-l-2 border-[#D4AF37]'
+                      : 'text-[#FFF8ED]/85 hover:text-[#FFF8ED] hover:bg-[#600000]'
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-[#D4AF37]" />
                   <span>{item.label}</span>
+                  {item.badge !== undefined && item.badge > 0 && (
+                    <span className="bg-[#8B0000] text-[#D4AF37] text-[10px] font-bold px-2 py-0.5 rounded-full border border-[#D4AF37]/50">
+                      {item.badge}
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
 
-          {/* Mobile Profile & Language Settings */}
-          <div className="pt-3 border-t border-[#D4AF37]/30 space-y-3">
-            {!isAuthenticated ? (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openAuthModal();
-                }}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold py-3 rounded-xl shadow-lg text-xs"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>
-                  {language === 'gu' ? 'ગૂગલ સાઇન ઇન' : language === 'hi' ? 'गूगल साइन इन' : 'Sign In with Google'}
-                </span>
-              </button>
-            ) : (
-              <div className="flex items-center justify-between bg-[#2A0000] p-3 rounded-xl border border-[#D4AF37]/40">
-                <div className="flex items-center gap-2">
-                  <img src={user?.avatarUrl} alt={user?.name} className="w-8 h-8 rounded-lg border border-[#D4AF37]" />
-                  <div>
-                    <p className="text-xs font-bold text-[#FFF8ED]">{user?.name}</p>
-                    <p className="text-[10px] text-[#D4AF37]">{user?.email}</p>
-                  </div>
-                </div>
-                <button onClick={logout} className="p-2 text-red-400 hover:text-red-300">
-                  <LogOut className="w-5 h-5" />
-                </button>
-              </div>
-            )}
-
-            {/* Mobile Language Selector */}
-            <div className="flex items-center justify-between bg-[#2A0000] p-2 rounded-xl border border-[#D4AF37]/30">
-              <span className="text-xs font-bold text-[#D4AF37] flex items-center gap-1.5 ml-1">
-                <Globe className="w-4 h-4" /> Language
-              </span>
-              <div className="flex gap-1">
-                {languages.map((lang) => (
+          {/* Mobile Language Selector */}
+          <div className="pt-3 border-t border-[#D4AF37]/20 flex items-center justify-between">
+            <span className="text-xs font-bold text-[#D4AF37] flex items-center gap-1">
+              <Globe className="w-3.5 h-3.5" /> Language
+            </span>
+            <div className="flex items-center gap-2 text-xs">
+              {languages.map((lang, idx) => (
+                <React.Fragment key={lang.id}>
+                  {idx > 0 && <span className="text-[#D4AF37]/30">|</span>}
                   <button
-                    key={lang.id}
                     onClick={() => setLanguage(lang.id)}
-                    className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
+                    className={`py-1 ${
                       language === lang.id
-                        ? 'bg-[#D4AF37] text-[#3B1111]'
-                        : 'bg-[#3A0000] text-[#FFF8ED]/70'
+                        ? 'text-[#D4AF37] font-bold underline'
+                        : 'text-[#FFF8ED]/70'
                     }`}
                   >
                     {lang.label}
                   </button>
-                ))}
-              </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
+
+          {/* Mobile Profile Sign Out */}
+          {isAuthenticated && (
+            <div className="pt-2 border-t border-[#D4AF37]/20 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <img src={user?.avatarUrl} alt={user?.name} className="w-6 h-6 rounded-lg border border-[#D4AF37]/50" />
+                <span className="text-xs font-bold text-[#FFF8ED]">{user?.name}</span>
+              </div>
+              <button
+                onClick={() => {
+                  logout();
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-1 text-xs text-red-300 font-bold"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Sign Out</span>
+              </button>
+            </div>
+          )}
         </div>
       )}
     </header>
   );
 };
+

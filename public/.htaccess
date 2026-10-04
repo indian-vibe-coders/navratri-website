@@ -18,8 +18,8 @@ Options -Indexes
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # /api is served by the Node.js app (configured in cPanel "Setup Node.js App")
-  RewriteRule ^api(/|$) - [L]
+  # Served by the Node.js app (configured in cPanel "Setup Node.js App")
+  RewriteRule ^(api|garba|sitemap\.xml|robots\.txt)(/|$) - [L]
 
   # Serve real files and folders as-is, send every other route to the SPA
   RewriteCond %{REQUEST_FILENAME} -f [OR]

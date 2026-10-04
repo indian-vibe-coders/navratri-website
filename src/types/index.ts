@@ -42,6 +42,8 @@ export interface LyricsSource {
 
 export interface Garba {
   id: string;
+  slug?: string;
+  isBuiltin?: boolean;
   title: {
     gu: string;
     hi: string;

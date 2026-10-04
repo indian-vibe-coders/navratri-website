@@ -2,19 +2,21 @@
 
 @layer base {
   :root {
-    --color-crimson: #8B0000;
-    --color-maroon: #3B1111;
-    --color-vermilion: #B71C1C;
+    --color-crimson-deep: #5A0808;
+    --color-crimson: #720909;
+    --color-maroon: #351010;
     --color-gold: #D4AF37;
     --color-gold-light: #F3E5AB;
-    --color-cream: #FFF8ED;
-    --color-cream-dark: #FAF0DB;
+    --color-cream: #FFF7E8;
+    --color-cream-base: #F8EEDC;
   }
 
   body {
-    background-color: #FFF8ED;
-    color: #3B1111;
+    background-color: #FFF7E8;
+    color: #250606;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -41,15 +43,13 @@
 
 /* Custom background paper texture & gradients */
 .bg-cream-paper {
-  background-color: #FFF8ED;
-  background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FFF8ED 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
-  background-opacity: 0.05;
+  background-color: #FFF7E8;
+  background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
 }
 
 .bg-crimson-royal {
-  background: linear-gradient(135deg, #4A0000 0%, #8B0000 50%, #2D0000 100%);
+  background: linear-gradient(180deg, #5A0808 0%, #6A0909 50%, #4A0606 100%);
 }
 
 .bg-gold-gradient {
@@ -57,60 +57,56 @@
 }
 
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFF3B0 30%, #AA771C 100%);
+  background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #C9A227 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Custom Ornate Border */
-.border-gold-ornate {
-  border: 2px solid #D4AF37;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+/* Refined Premium Shadows */
+.shadow-editorial {
+  box-shadow: 0 12px 40px rgba(35, 6, 6, 0.12), 0 2px 6px rgba(35, 6, 6, 0.04);
 }
 
-.card-devotional-shadow {
-  box-shadow: 0 10px 30px -5px rgba(139, 0, 0, 0.15), 0 4px 10px -2px rgba(212, 175, 55, 0.1);
+.shadow-devotional {
+  box-shadow: 0 20px 50px rgba(25, 4, 4, 0.25), 0 4px 15px rgba(212, 175, 55, 0.08);
+}
+
+.shadow-card-elevated {
+  box-shadow: 0 10px 30px rgba(45, 8, 8, 0.08), 0 2px 8px rgba(45, 8, 8, 0.04);
 }
 
 /* Animations */
 @keyframes diyaGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8)) drop-shadow(0 0 18px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.6));
     transform: scale(1);
   }
   50% {
-    filter: drop-shadow(0 0 12px rgba(255, 140, 0, 0.95)) drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
-    transform: scale(1.04);
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.85));
+    transform: scale(1.03);
   }
 }
 
 .animate-diya-glow {
-  animation: diyaGlow 3s ease-in-out infinite;
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spinSlow 40s linear infinite;
+  animation: diyaGlow 3.5s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFF8ED;
+  background: #5A0808;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C5A059;
+  background: #8B0000;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8B0000;
+  background: #D4AF37;
 }
+

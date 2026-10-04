@@ -123,51 +123,51 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
   };
 
   return (
-    <div className="bg-[#800000] min-h-screen text-[#FFF8ED]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-        {/* Header */}
-        <div className="bg-[#6A0000] border-2 border-[#D4AF37]/50 rounded-3xl p-6 shadow-2xl space-y-4">
+    <div className="bg-[#5A0808] min-h-screen text-[#FFF7E8]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+        {/* Header Search Panel */}
+        <div className="bg-[#351010]/90 border border-[#D4AF37]/30 rounded-2xl p-5 sm:p-6 shadow-devotional space-y-4 backdrop-blur-sm">
           <div className="flex flex-wrap items-center gap-3">
             {section && (
               <button
                 onClick={() => openSection(null)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#600000] text-[#D4AF37] border border-[#D4AF37]/60 text-xs font-bold hover:bg-[#800000]"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#5A0808] text-[#D4AF37] border border-[#D4AF37]/40 text-xs font-semibold hover:bg-[#6A0909]"
               >
-                <ArrowLeft className="w-4 h-4" />
+                <ArrowLeft className="w-3.5 h-3.5" />
                 <span>{TEXT.back[language]}</span>
               </button>
             )}
             <div className="min-w-0">
-              <h1 className={`text-2xl sm:text-3xl font-extrabold ${fontFor(language)}`}>
+              <h1 className={`text-xl sm:text-3xl font-extrabold ${fontFor(language)}`}>
                 {section ? `${LIBRARY_SECTIONS[section]?.emoji ?? ''} ${sectionLabel(section, language)}` : TEXT.title[language]}
               </h1>
-              {!section && <p className="text-xs text-[#D4AF37] mt-1">{TEXT.subtitle[language]}</p>}
+              {!section && <p className="text-xs text-[#D4AF37] mt-0.5">{TEXT.subtitle[language]}</p>}
             </div>
           </div>
 
           <div className="relative">
-            <Search className="w-5 h-5 text-[#D4AF37] absolute left-4 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#D4AF37] absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={TEXT.search[language]}
-              className="w-full bg-[#3B1111] text-[#FFF8ED] placeholder-[#FFF8ED]/60 pl-12 pr-4 py-3 rounded-2xl border-2 border-[#D4AF37]/50 text-base outline-none font-gujarati"
+              className="w-full bg-[#250606] text-[#FFF7E8] placeholder-[#FFF7E8]/50 pl-11 pr-4 py-3 rounded-xl border border-[#D4AF37]/30 text-sm outline-none font-gujarati focus:border-[#D4AF37]/70 transition-colors"
             />
           </div>
 
-          {/* Sub-collection filter: chips when few, dropdown when many */}
+          {/* Sub-collection filter */}
           {section && subcollections.length > 1 && (
             subcollections.length <= MAX_CHIPS ? (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 {[{ slug: '', count: current?.count ?? 0 }, ...subcollections].map((s) => (
                   <button
                     key={s.slug || 'all'}
                     onClick={() => setSub(s.slug)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-colors ${
+                    className={`px-3 py-1 rounded-lg text-xs font-medium border transition-colors ${
                       sub === s.slug
-                        ? 'bg-[#D4AF37] text-[#3B1111] border-[#D4AF37]'
-                        : 'bg-[#3B1111] text-[#FFF8ED]/90 border-[#D4AF37]/40 hover:border-[#D4AF37]'
+                        ? 'bg-[#D4AF37] text-[#351010] border-[#D4AF37] font-bold'
+                        : 'bg-[#5A0808]/60 text-[#FFF7E8]/90 border-[#D4AF37]/20 hover:border-[#D4AF37]/40'
                     }`}
                   >
                     {s.slug ? prettifySlug(s.slug) : TEXT.all[language]} <span className="opacity-70">({s.count})</span>
@@ -178,7 +178,7 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
               <select
                 value={sub}
                 onChange={(e) => setSub(e.target.value)}
-                className="w-full bg-[#3B1111] text-[#FFF8ED] px-4 py-3 rounded-2xl border-2 border-[#D4AF37]/50 text-sm outline-none"
+                className="w-full bg-[#250606] text-[#FFF7E8] px-3.5 py-2.5 rounded-xl border border-[#D4AF37]/30 text-xs outline-none"
               >
                 <option value="">
                   {TEXT.all[language]} ({current?.count})
@@ -193,7 +193,7 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
           )}
         </div>
 
-        {error && <p className="text-center text-sm text-red-200">{TEXT.error[language]}</p>}
+        {error && <p className="text-center text-xs text-red-300">{TEXT.error[language]}</p>}
 
         {/* Section grid */}
         {!showList && (
@@ -202,11 +202,11 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
               <button
                 key={s.slug}
                 onClick={() => openSection(s.slug)}
-                className="text-left bg-[#FFF8ED] text-[#3B1111] rounded-2xl border-2 border-[#D4AF37]/40 p-5 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition-all"
+                className="text-left bg-[#FFF7E8] text-[#351010] rounded-xl border border-[#D4AF37]/25 p-5 shadow-card-elevated hover:shadow-editorial hover:-translate-y-0.5 transition-all"
               >
-                <div className="text-3xl">{LIBRARY_SECTIONS[s.slug]?.emoji ?? '🎵'}</div>
-                <h2 className={`mt-2 text-xl font-bold ${fontFor(language)}`}>{sectionLabel(s.slug, language)}</h2>
-                <p className="text-xs font-semibold text-[#8B0000]/80 mt-1">
+                <div className="text-2xl">{LIBRARY_SECTIONS[s.slug]?.emoji ?? '🎵'}</div>
+                <h2 className={`mt-2 text-lg font-bold ${fontFor(language)}`}>{sectionLabel(s.slug, language)}</h2>
+                <p className="text-xs font-semibold text-[#720909]/80 mt-1">
                   {s.count.toLocaleString()} {TEXT.songs[language]}
                 </p>
               </button>
@@ -216,9 +216,9 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
 
         {/* Song list */}
         {showList && (
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {!isLoading && items.length === 0 && !error && (
-              <p className="text-center py-10 text-[#FFF8ED]/80">{TEXT.noResults[language]}</p>
+              <p className="text-center py-10 text-[#FFF7E8]/70 text-sm">{TEXT.noResults[language]}</p>
             )}
             {items.length > 0 && (
               <p className="text-xs text-[#D4AF37] font-semibold">
@@ -236,17 +236,17 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
                   tabIndex={0}
                   onClick={() => onSelectGarba(song)}
                   onKeyDown={(e) => e.key === 'Enter' && onSelectGarba(song)}
-                  className="flex items-center gap-3 bg-[#FFF8ED] text-[#3B1111] rounded-2xl border border-[#D4AF37]/40 px-4 py-3 shadow hover:shadow-lg hover:border-[#D4AF37] cursor-pointer transition-all"
+                  className="flex items-center gap-3 bg-[#FFF7E8] text-[#351010] rounded-xl border border-[#D4AF37]/25 px-4 py-3 shadow-card-elevated hover:shadow-editorial hover:border-[#D4AF37]/50 cursor-pointer transition-all"
                 >
-                  <div className="w-10 h-10 shrink-0 rounded-xl bg-[#8B0000] text-[#D4AF37] flex items-center justify-center">
-                    {loadingSongId === song.id ? <Loader2 className="w-5 h-5 animate-spin" /> : <BookOpen className="w-5 h-5" />}
+                  <div className="w-9 h-9 shrink-0 rounded-lg bg-[#5A0808] text-[#D4AF37] flex items-center justify-center">
+                    {loadingSongId === song.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <BookOpen className="w-4 h-4" />}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className={`font-bold text-base sm:text-lg leading-snug truncate ${fontFor(language)}`}>{title}</h3>
-                    <p className="text-xs text-[#8B0000]/80 truncate">
+                    <h3 className={`font-bold text-sm sm:text-base leading-snug truncate ${fontFor(language)}`}>{title}</h3>
+                    <p className="text-xs text-[#720909]/80 truncate">
                       {subtitle}
                       {song.subcollection && (
-                        <span className="ml-2 inline-block bg-[#D4AF37]/25 text-[#3B1111] px-2 py-0.5 rounded-full text-[10px] font-bold align-middle">
+                        <span className="ml-2 inline-block bg-[#D4AF37]/20 text-[#351010] px-2 py-0.5 rounded text-[10px] font-medium align-middle">
                           {section ? prettifySlug(song.subcollection) : sectionLabel(song.collection, language)}
                         </span>
                       )}
@@ -254,10 +254,10 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
                   </div>
                   <button
                     onClick={(e) => onToggleFavorite(song.id, e)}
-                    className="p-2 rounded-full hover:bg-[#D4AF37]/20"
+                    className="p-1.5 rounded-full hover:bg-[#D4AF37]/15"
                     aria-label="Toggle favorite"
                   >
-                    <Heart className={`w-5 h-5 ${isFavorite(song.id) ? 'fill-[#B71C1C] text-[#B71C1C]' : 'text-[#8B0000]/60'}`} />
+                    <Heart className={`w-4 h-4 ${isFavorite(song.id) ? 'fill-[#B71C1C] text-[#B71C1C]' : 'text-[#720909]/50'}`} />
                   </button>
                 </div>
               );
@@ -265,7 +265,7 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
 
             {isLoading && (
               <div className="flex justify-center py-6">
-                <Loader2 className="w-6 h-6 animate-spin text-[#D4AF37]" />
+                <Loader2 className="w-5 h-5 animate-spin text-[#D4AF37]" />
               </div>
             )}
 
@@ -273,7 +273,7 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
               <div className="flex justify-center pt-2">
                 <button
                   onClick={loadMore}
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#3B1111] font-extrabold text-xs shadow-lg hover:brightness-110"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#351010] font-bold text-xs shadow-md hover:brightness-105"
                 >
                   {TEXT.loadMore[language]} ({total - items.length})
                 </button>
@@ -285,3 +285,4 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({
     </div>
   );
 };
+

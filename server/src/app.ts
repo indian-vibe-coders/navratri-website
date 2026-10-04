@@ -47,11 +47,31 @@ api.use(songsRouter);
 api.use(garbasRouter);
 api.use(commentsRouter);
 
+import { handleGarbaSsr, handleHomepageSsr, handleRobotsTxt, handleSitemapXml } from './ssr.ts';
+
 // Passenger may or may not strip the /api prefix depending on setup, so accept both
 app.use('/api', api);
-app.use('/', api);
 
-app.use((_req, res) => {
+// Homepage SSR Route
+app.get('/', handleHomepageSsr);
+
+// Sitemap & Robots
+app.get('/sitemap.xml', handleSitemapXml);
+app.get('/robots.txt', handleRobotsTxt);
+
+// SSR Garba Route
+app.get('/garba/:slug', handleGarbaSsr);
+
+// Root / API fallthrough
+app.use('/api/*', (_req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
+
+app.use((_req, res, next) => {
+  if (_req.accepts('html')) {
+    next();
+    return;
+  }
   res.status(404).json({ error: 'Not found' });
 });
 

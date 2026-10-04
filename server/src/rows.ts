@@ -1,26 +1,31 @@
 import type { RowDataPacket } from 'mysql2';
 import type { Garba, GarbaSummary, LyricsSection } from '../../src/types/index.ts';
 import { parseJson } from './db.ts';
+import { getGarbaSlug } from './utils/slug.ts';
 
 // Columns for list views: everything except the large lyrics/audio JSON
 export const SUMMARY_COLUMNS =
-  'id, title, category, deity, is_featured, is_popular, tags, description, artwork_url, lyrics_source, collection, subcollection';
+  'id, title, category, deity, is_featured, is_popular, is_builtin, tags, description, artwork_url, lyrics_source, collection, subcollection';
 
 export function rowToSummary(row: RowDataPacket): GarbaSummary {
-  return {
+  const title = parseJson<GarbaSummary['title']>(row.title);
+  const isBuiltin = !!row.is_builtin;
+  const summary: GarbaSummary = {
     id: row.id,
-    title: parseJson(row.title),
+    title,
     category: row.category,
     deity: row.deity ?? '',
     isFeatured: !!row.is_featured,
     isPopular: !!row.is_popular,
-    tags: parseJson(row.tags),
-    description: parseJson(row.description),
+    tags: parseJson<string[]>(row.tags) ?? [],
+    description: parseJson<GarbaSummary['description']>(row.description),
     artworkUrl: row.artwork_url ?? '',
-    lyricsSource: parseJson(row.lyrics_source) ?? { name: '', url: '#' },
+    lyricsSource: parseJson<GarbaSummary['lyricsSource']>(row.lyrics_source) ?? { name: '', url: '#' },
     collection: row.collection ?? undefined,
     subcollection: row.subcollection ?? undefined,
   };
+  summary.slug = getGarbaSlug({ id: row.id, title, isBuiltin });
+  return summary;
 }
 
 export function rowToGarba(row: RowDataPacket): Garba {

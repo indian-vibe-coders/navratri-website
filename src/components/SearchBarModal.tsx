@@ -43,7 +43,6 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Search the whole song library on the server (debounced); local results show instantly
   const [remoteResults, setRemoteResults] = useState<GarbaSummary[]>([]);
   const [remoteTotal, setRemoteTotal] = useState(0);
   useEffect(() => {
@@ -85,7 +84,7 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
           ('lyrics' in g && (g as Garba).lyrics.gu.some((l) => l.toLowerCase().includes(q)))
         );
       })
-    : garbas.slice(0, 5); // Show top 5 when empty
+    : garbas.slice(0, 5);
 
   const localIds = new Set(localMatches.map((g) => g.id));
   const filteredGarbas = [...localMatches, ...remoteResults.filter((g) => !localIds.has(g.id))];
@@ -93,36 +92,36 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 px-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-[#FFF8ED] border-2 border-[#D4AF37] rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden text-[#3B1111] flex flex-col max-h-[80vh]">
+      <div className="bg-[#FFF7E8] border border-[#D4AF37]/30 rounded-2xl max-w-2xl w-full shadow-devotional overflow-hidden text-[#351010] flex flex-col max-h-[80vh]">
         
         {/* Search Bar Header */}
-        <div className="p-4 bg-[#3B1111] border-b-2 border-[#D4AF37]/50 flex items-center gap-3">
-          <Search className="w-5 h-5 text-[#D4AF37] shrink-0" />
+        <div className="p-4 bg-[#351010] border-b border-[#D4AF37]/25 flex items-center gap-3">
+          <Search className="w-4 h-4 text-[#D4AF37] shrink-0" />
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.explore.searchBarPlaceholder}
-            className="w-full bg-transparent text-[#FFF8ED] placeholder-[#FFF8ED]/50 text-base outline-none font-gujarati font-medium"
+            className="w-full bg-transparent text-[#FFF7E8] placeholder-[#FFF7E8]/50 text-sm outline-none font-gujarati font-medium"
           />
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full bg-[#1A0505] text-[#D4AF37] hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-colors"
+            className="p-1 rounded-full text-[#FFF7E8]/70 hover:text-[#FFF7E8] hover:bg-[#5A0808] transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Results List */}
-        <div className="p-4 overflow-y-auto space-y-3 flex-1">
-          <div className="flex items-center justify-between text-xs text-[#8B0000] font-bold uppercase tracking-wider px-2">
+        <div className="p-4 overflow-y-auto space-y-2.5 flex-1">
+          <div className="flex items-center justify-between text-xs text-[#720909] font-bold uppercase tracking-wider px-1">
             <span>
               {query
                 ? `Search Results (${resultCount > filteredGarbas.length ? `${filteredGarbas.length} of ${resultCount}` : resultCount})`
                 : 'Popular Garbas'}
             </span>
-            <span className="text-[10px] text-[#3B1111]/60 font-sans">Press ESC to close</span>
+            <span className="text-[10px] text-[#351010]/60 font-sans">ESC to close</span>
           </div>
 
           {filteredGarbas.length > 0 ? (
@@ -133,31 +132,31 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
               return (
                 <div
                   key={garba.id}
-                  className="bg-[#FFF8ED] p-3.5 rounded-2xl border border-[#D4AF37]/40 hover:border-[#D4AF37] hover:bg-[#FFF3D6] transition-all flex items-center justify-between gap-4 group"
+                  className="bg-[#FFF7E8] p-3 rounded-xl border border-[#D4AF37]/25 hover:border-[#D4AF37]/50 shadow-card-elevated hover:shadow-editorial transition-all flex items-center justify-between gap-3 group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-12 h-12 rounded-xl overflow-hidden border border-[#D4AF37]/50 shrink-0 bg-[#3B1111]">
+                    <div className="w-10 h-10 rounded-lg overflow-hidden border border-[#D4AF37]/30 shrink-0 bg-[#5A0808]">
                       <img src={garba.artworkUrl} alt={garba.title.en} className="w-full h-full object-cover" />
                     </div>
                     <div className="min-w-0">
-                      <h4 className={`font-bold text-base md:text-lg text-[#3B1111] truncate ${
+                      <h4 className={`font-bold text-sm text-[#351010] truncate ${
                         language === 'gu' ? 'font-gujarati' : language === 'hi' ? 'font-hindi' : 'font-serif-heading'
                       }`}>
                         {titleText}
                       </h4>
-                      <p className="font-serif-heading text-xs text-[#8B0000] truncate">
-                        {secondaryTitle} • <span className="font-sans text-[11px] text-[#3B1111]/70">{garba.category}</span>
+                      <p className="font-serif-heading text-xs text-[#720909]/80 truncate">
+                        {secondaryTitle} • <span className="font-sans text-[10px] text-[#351010]/70">{garba.category}</span>
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-2 shrink-0">
+                  <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       onClick={() => {
                         onSelectGarba(garba, 'lyrics');
                         onClose();
                       }}
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#8B0000] text-[#FFF8ED] text-xs font-bold hover:bg-[#A00000] transition-colors border border-[#D4AF37]/50"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#5A0808] text-[#FFF7E8] text-xs font-semibold hover:bg-[#720909] transition-colors border border-[#D4AF37]/30"
                     >
                       <BookOpen className="w-3.5 h-3.5 text-[#D4AF37]" />
                       <span>Lyrics</span>
@@ -168,10 +167,10 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
                           onSelectGarba(garba, 'audio');
                           onClose();
                         }}
-                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-[#3B1111] text-[#D4AF37] text-xs font-bold hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-colors border border-[#D4AF37]/50"
+                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#FFF7E8] text-[#351010] text-xs font-medium border border-[#D4AF37]/30 hover:bg-[#5A0808]/10 transition-colors"
                         title="Listen to audio reference"
                       >
-                        <Play className="w-3.5 h-3.5 fill-current" />
+                        <Play className="w-3.5 h-3.5 fill-current text-[#720909]" />
                       </button>
                     )}
                   </div>
@@ -179,8 +178,8 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
               );
             })
           ) : (
-            <div className="text-center py-10 text-[#3B1111]/70 font-gujarati">
-              <p className="text-base font-bold">{t.explore.noResults}</p>
+            <div className="text-center py-8 text-[#351010]/70 font-gujarati">
+              <p className="text-sm font-bold">{t.explore.noResults}</p>
             </div>
           )}
         </div>
@@ -189,3 +188,4 @@ export const SearchBarModal: React.FC<SearchBarModalProps> = ({
     </div>
   );
 };
+

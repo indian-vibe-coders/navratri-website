@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import type { RowDataPacket } from 'mysql2';
 import type { LibrarySection } from '../../../src/types/index.ts';
+import { GARBAS_DATA } from '../../../src/data/garbas.ts';
 import { pool } from '../db.ts';
 import { ValidationError } from '../validate.ts';
 import { rowToGarba, rowToSummary, SUMMARY_COLUMNS } from '../rows.ts';
+import { getGarbaSlug } from '../utils/slug.ts';
 
 export const songsRouter = Router();
 
@@ -87,11 +89,33 @@ songsRouter.get('/songs', async (req, res) => {
 });
 
 songsRouter.get('/songs/:id', async (req, res) => {
-  const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ?', [req.params.id]);
-  if (rows.length === 0) {
-    res.status(404).json({ error: 'Song not found' });
+  try {
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ?', [req.params.id]);
+    if (rows.length > 0) {
+      res.set('Cache-Control', 'public, max-age=300');
+      res.json(rowToGarba(rows[0]));
+      return;
+    }
+  } catch (err) {
+    console.error('DB query error on GET /songs/:id:', err);
+    const builtin = GARBAS_DATA.find((g) => g.id === req.params.id);
+    if (builtin) {
+      const copy = { ...builtin, slug: getGarbaSlug({ id: builtin.id, title: builtin.title, isBuiltin: true }) };
+      res.set('Cache-Control', 'public, max-age=60');
+      res.json(copy);
+      return;
+    }
+    res.status(503).setHeader('Retry-After', '5').json({ error: 'Database service temporarily unavailable' });
     return;
   }
-  res.set('Cache-Control', 'public, max-age=300');
-  res.json(rowToGarba(rows[0]));
+
+  const builtin = GARBAS_DATA.find((g) => g.id === req.params.id);
+  if (builtin) {
+    const copy = { ...builtin, slug: getGarbaSlug({ id: builtin.id, title: builtin.title, isBuiltin: true }) };
+    res.set('Cache-Control', 'public, max-age=300');
+    res.json(copy);
+    return;
+  }
+
+  res.status(404).json({ error: 'Song not found' });
 });

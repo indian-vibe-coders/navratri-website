@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
@@ -16,8 +16,16 @@ import { GARBAS_DATA } from './data/garbas';
 import type { Garba, GarbaSummary } from './types';
 import { useFavorites } from './hooks/useFavorites';
 import { fetchSong, fetchSongs, postGarba } from './lib/apiClient';
+import { getGarbaSlug } from './utils/slug';
 
 type ReturnTab = 'home' | 'garbas' | 'library' | 'favorites';
+
+declare global {
+  interface Window {
+    __NOT_FOUND__?: boolean;
+    __DB_ERROR__?: boolean;
+  }
+}
 
 export const AppContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
@@ -27,6 +35,7 @@ export const AppContent: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isAddGarbaOpen, setIsAddGarbaOpen] = useState(false);
   const [loadingSongId, setLoadingSongId] = useState<string | null>(null);
+  const [notFoundError, setNotFoundError] = useState(false);
 
   // Navratri garbas from the API (summaries only; lyrics load when a song is opened)
   const [remoteGarbas, setRemoteGarbas] = useState<GarbaSummary[]>([]);
@@ -35,6 +44,52 @@ export const AppContent: React.FC = () => {
 
   const { isAuthenticated, openAuthModal } = useAuth();
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
+
+  // Load garba specified in URL (/garba/:slug) on mount or popstate
+  const loadSongFromPath = useCallback(async (path: string) => {
+    if (window.__NOT_FOUND__) {
+      setNotFoundError(true);
+      return;
+    }
+
+    if (path.startsWith('/garba/')) {
+      const slug = path.replace(/^\/garba\//, '').replace(/\/+$/, '');
+      if (!slug) return;
+
+      const builtin = GARBAS_DATA.find(
+        (g) => g.id.toLowerCase() === slug.toLowerCase() || g.slug?.toLowerCase() === slug.toLowerCase(),
+      );
+
+      if (builtin) {
+        setSelectedGarba(builtin);
+        setActiveTab('lyrics');
+        setNotFoundError(false);
+        return;
+      }
+
+      try {
+        const song = await fetchSong(slug);
+        setSelectedGarba(song);
+        setActiveTab('lyrics');
+        setNotFoundError(false);
+      } catch {
+        setNotFoundError(true);
+      }
+    } else {
+      setNotFoundError(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadSongFromPath(window.location.pathname);
+
+    const handlePopState = () => {
+      loadSongFromPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [loadSongFromPath]);
 
   useEffect(() => {
     fetchSongs({ collection: 'navratri', limit: 1000 })
@@ -66,7 +121,11 @@ export const AppContent: React.FC = () => {
   }, [missingFavoriteIds]);
 
   // Select Garba: Open lyrics and audio player (public to all users)
-  const handleSelectGarba = async (garba: GarbaSummary | Garba, tab: 'lyrics' | 'audio' = 'lyrics') => {
+  const handleSelectGarba = async (
+    garba: GarbaSummary | Garba,
+    tab: 'lyrics' | 'audio' = 'lyrics',
+    skipPushState = false,
+  ) => {
     if (activeTab !== 'lyrics') setReturnTab(activeTab as ReturnTab);
 
     let full: Garba;
@@ -84,14 +143,40 @@ export const AppContent: React.FC = () => {
       }
     }
 
+    const slug = full.slug || getGarbaSlug(full);
+    if (!skipPushState && window.location.pathname !== `/garba/${slug}`) {
+      window.history.pushState({ navSwarPushed: true, garbaId: full.id }, '', `/garba/${slug}`);
+    }
+
     setSelectedGarba(full);
     setDefaultTab(tab);
     setActiveTab('lyrics');
+    setNotFoundError(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Close / Back button handling for lyrics view
+  const handleCloseGarba = () => {
+    if (window.history.state?.navSwarPushed) {
+      window.history.back();
+    } else {
+      window.history.pushState(null, '', '/');
+      setSelectedGarba(null);
+      setActiveTab(returnTab || 'garbas');
+    }
+  };
+
   const goTo = (tab: string) => {
+    if (activeTab === 'lyrics' && tab !== 'lyrics') {
+      if (window.history.state?.navSwarPushed) {
+        window.history.back();
+      } else {
+        window.history.pushState(null, '', '/');
+      }
+    }
     setActiveTab(tab);
+    setSelectedGarba(null);
+    setNotFoundError(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -126,8 +211,7 @@ export const AppContent: React.FC = () => {
             openAuthModal('Please sign in with Google to access your favorite Garbas!');
             return;
           }
-          setActiveTab(tab);
-          if (tab !== 'lyrics') setSelectedGarba(null);
+          goTo(tab);
         }}
         onOpenSearch={() => setIsSearchOpen(true)}
         favoritesCount={favorites.length}
@@ -135,70 +219,93 @@ export const AppContent: React.FC = () => {
 
       {/* Main View Router */}
       <main className="flex-1">
-        {activeTab === 'home' && (
-          <Home
-            garbas={allGarbas}
-            featuredGarba={featuredGarba}
-            onSelectGarba={handleSelectGarba}
-            isFavorite={isFavorite}
-            onToggleFavorite={handleToggleFavorite}
-            onNavigateToGarbas={() => {
-              setActiveTab('garbas');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        )}
+        {notFoundError ? (
+          <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-16">
+            <div className="w-20 h-20 rounded-full bg-[#D97706]/10 flex items-center justify-center mb-6 text-[#D97706] text-4xl font-serif">
+              🪔
+            </div>
+            <h1 className="text-3xl font-serif text-[#3B1111] mb-3">Garba Not Found / ગરબા મળ્યો નથી</h1>
+            <p className="text-gray-600 max-w-md mb-8">
+              The garba lyrics you are looking for do not exist or may have been moved. Discover our collection of authentic Gujarati Garbas.
+            </p>
+            <button
+              onClick={() => {
+                setNotFoundError(false);
+                if (window.history.state?.navSwarPushed) {
+                  window.history.back();
+                } else {
+                  window.history.pushState(null, '', '/');
+                }
+                setActiveTab('garbas');
+                setSelectedGarba(null);
+              }}
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#D97706] to-[#B45309] text-white font-medium shadow-md hover:shadow-lg transition-all"
+            >
+              Explore All Garbas
+            </button>
+          </div>
+        ) : (
+          <div key={activeTab} className="animate-in fade-in duration-300 ease-in-out">
+            {activeTab === 'home' && (
+              <Home
+                garbas={allGarbas}
+                featuredGarba={featuredGarba}
+                onSelectGarba={handleSelectGarba}
+                isFavorite={isFavorite}
+                onToggleFavorite={handleToggleFavorite}
+                onNavigateToGarbas={() => goTo('garbas')}
+              />
+            )}
 
-        {activeTab === 'garbas' && (
-          <GarbasPage
-            garbas={allGarbas}
-            onSelectGarba={handleSelectGarba}
-            isFavorite={isFavorite}
-            onToggleFavorite={handleToggleFavorite}
-            onOpenAddGarba={() => {
-              if (!isAuthenticated) {
-                openAuthModal('Please sign in with Google to publish your custom Garba!');
-                return;
-              }
-              setIsAddGarbaOpen(true);
-            }}
-          />
-        )}
+            {activeTab === 'garbas' && (
+              <GarbasPage
+                garbas={allGarbas}
+                onSelectGarba={handleSelectGarba}
+                isFavorite={isFavorite}
+                onToggleFavorite={handleToggleFavorite}
+                onOpenAddGarba={() => {
+                  if (!isAuthenticated) {
+                    openAuthModal('Please sign in with Google to publish your custom Garba!');
+                    return;
+                  }
+                  setIsAddGarbaOpen(true);
+                }}
+              />
+            )}
 
-        {activeTab === 'lyrics' && (
-          <LyricsViewer
-            garba={selectedGarba || featuredGarba}
-            onBack={() => goTo(returnTab)}
-            isFavorite={isFavorite((selectedGarba || featuredGarba).id)}
-            onToggleFavorite={handleToggleFavorite}
-            defaultTab={defaultTab}
-          />
-        )}
+            {activeTab === 'lyrics' && (
+              <LyricsViewer
+                garba={selectedGarba || featuredGarba}
+                onBack={handleCloseGarba}
+                isFavorite={isFavorite((selectedGarba || featuredGarba).id)}
+                onToggleFavorite={handleToggleFavorite}
+                defaultTab={defaultTab}
+              />
+            )}
 
-        {activeTab === 'library' && (
-          <LibraryPage
-            onSelectGarba={handleSelectGarba}
-            isFavorite={isFavorite}
-            onToggleFavorite={handleToggleFavorite}
-            loadingSongId={loadingSongId}
-          />
-        )}
+            {activeTab === 'library' && (
+              <LibraryPage
+                onSelectGarba={handleSelectGarba}
+                isFavorite={isFavorite}
+                onToggleFavorite={handleToggleFavorite}
+                loadingSongId={loadingSongId}
+              />
+            )}
 
-        {activeTab === 'favorites' && (
-          <FavoritesPage
-            garbas={[...allGarbas, ...extraFavorites]}
-            favoriteIds={favorites}
-            onSelectGarba={handleSelectGarba}
-            isFavorite={isFavorite}
-            onToggleFavorite={handleToggleFavorite}
-            onNavigateToGarbas={() => {
-              setActiveTab('garbas');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          />
-        )}
+            {activeTab === 'favorites' && (
+              <FavoritesPage
+                garbas={[...allGarbas, ...extraFavorites]}
+                favoriteIds={favorites}
+                onSelectGarba={handleSelectGarba}
+                isFavorite={isFavorite}
+                onToggleFavorite={handleToggleFavorite}
+                onNavigateToGarbas={() => goTo('garbas')}
+              />
+            )}
 
-        {activeTab === 'about' && <AboutPage />}
+            {activeTab === 'about' && <AboutPage />}
+          </div>
+        )}
       </main>
 
       {/* Global Search Modal */}

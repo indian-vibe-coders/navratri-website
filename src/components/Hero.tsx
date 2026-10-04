@@ -14,72 +14,69 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
   const { isAuthenticated, openAuthModal } = useAuth();
 
   return (
-    <div className="relative text-[#FFF8ED] overflow-hidden border-b-4 border-[#D4AF37] min-h-[520px] sm:min-h-[600px] md:min-h-[660px] flex items-center bg-[#800000]">
-      {/* Full Background Maa Durga Image - Top Aligned for Full Crown Visibility */}
+    <div className="relative text-[#FFF7E8] overflow-hidden border-b border-[#D4AF37]/30 min-h-[500px] sm:min-h-[580px] md:min-h-[620px] flex items-center bg-[#5A0808]">
+      {/* Background Maa Durga Image */}
       <div className="absolute inset-0 overflow-hidden">
         <img 
           src={maaDurgaImg} 
           alt="Maa Durga Devotional Background"
-          className="w-full h-full object-cover object-[center_top] filter contrast-[1.08] brightness-[1.02]"
+          className="w-full h-full object-cover object-[center_top] filter contrast-[1.05] brightness-[0.95]"
         />
       </div>
 
-      {/* Devotional Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#800000] via-[#800000]/40 to-transparent"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#600000]/50 via-transparent to-[#600000]/50"></div>
+      {/* Cinematic Vignette & Tonal Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#4A0505] via-[#5A0808]/75 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#4A0505]/80 via-transparent to-[#4A0505]/80" />
 
-      {/* Background Decorative Mandala */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[600px] md:h-[800px] rounded-full border border-[#D4AF37]/20 animate-spin-slow pointer-events-none"></div>
+      {/* Subtle Background Pattern */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[700px] h-[400px] sm:h-[700px] rounded-full border border-[#D4AF37]/10 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 relative z-10 w-full text-center">
-        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16 relative z-10 w-full text-center">
+        <div className="max-w-3xl mx-auto space-y-6">
           
-          {/* Navratri 2026 Official Festival Dates Announcement Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#1A0505]/90 border-2 border-[#D4AF37] px-4 py-2 rounded-full shadow-2xl backdrop-blur-md animate-bounce-subtle">
-            <Calendar className="w-4 h-4 text-[#D4AF37]" />
-            <span className="font-serif-heading text-xs sm:text-sm font-bold text-[#D4AF37] tracking-wide">
+          {/* Navratri Festival Date Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#3A0404]/85 border border-[#D4AF37]/40 px-4 py-1.5 rounded-full shadow-lg backdrop-blur-md">
+            <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span className="font-serif-heading text-xs font-semibold text-[#D4AF37] tracking-wider uppercase">
               {language === 'gu'
-                ? '🌸 શારદીય નવરાત્રી ૨૦૨૬: ૧૧ ઓક્ટોબર – ૨૦ ઓક્ટોબર ૨૦૨૬ 🌸'
+                ? 'શારદીય નવરાત્રી ૨૦૨૬: ૧૧ – ૨૦ ઓક્ટોબર'
                 : language === 'hi'
-                ? '🌸 शारदीय नवरात्रि 2026: 11 अक्टूबर – 20 अक्टूबर 2026 🌸'
-                : '🌸 Shardiya Navratri 2026: 11 October – 20 October 2026 🌸'}
+                ? 'शारदीय नवरात्रि 2026: 11 – 20 अक्टूबर'
+                : 'Shardiya Navratri 2026: Oct 11 – Oct 20'}
             </span>
           </div>
 
           {/* Main Headings */}
-          <div className="space-y-2 sm:space-y-4 min-h-[120px] sm:min-h-[160px] md:min-h-[190px] flex flex-col justify-center">
-            <h1 className="font-serif-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#FFF8ED] leading-tight tracking-tight drop-shadow-2xl">
+          <div className="space-y-3">
+            <h1 className="font-serif-title text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#FFF7E8] leading-tight tracking-tight drop-shadow-md">
               {t.hero.mainTitle}
             </h1>
-            <p className="font-serif-heading text-xl sm:text-3xl md:text-4xl text-gold-gradient font-bold tracking-wider drop-shadow-lg">
+            <p className="font-serif-heading text-lg sm:text-2xl md:text-3xl text-gold-gradient font-bold tracking-wide">
               {t.hero.subTitle}
             </p>
           </div>
 
-          {/* Description */}
-          <div className="min-h-[64px] sm:min-h-[76px] flex items-center justify-center">
-            <p className="text-base sm:text-lg md:text-xl text-[#FFF8ED]/95 font-gujarati leading-relaxed mx-auto drop-shadow-md max-w-3xl px-2">
-              {t.hero.description}
-            </p>
-          </div>
+          {/* Subtitle Description */}
+          <p className="text-sm sm:text-base md:text-lg text-[#FFF7E8]/90 font-gujarati leading-relaxed max-w-2xl mx-auto">
+            {t.hero.description}
+          </p>
 
-          {/* Action CTAs: Explore Button & Conditional Sign In Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 pt-2 sm:pt-4">
+          {/* Action CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button
               onClick={onExplore}
-              className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4.5 rounded-2xl bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] text-[#3B1111] font-extrabold text-base sm:text-lg shadow-2xl hover:scale-105 active:scale-95 transition-all border-2 border-[#FFF8ED]"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#351010] font-bold text-sm shadow-md hover:brightness-105 transition-all"
             >
-              <Music2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#3B1111]" />
+              <Music2 className="w-4 h-4 text-[#351010]" />
               <span>{t.hero.ctaExplore}</span>
             </button>
 
-            {/* Render Sign In Button ONLY when user is NOT signed in */}
             {!isAuthenticated && (
               <button
                 onClick={() => openAuthModal()}
-                className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4.5 rounded-2xl bg-[#1A0505]/95 text-[#D4AF37] font-extrabold text-base sm:text-lg border-2 border-[#D4AF37] shadow-xl hover:bg-[#8B0000] hover:text-[#FFF8ED] transition-all backdrop-blur-sm"
+                className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#3A0404]/80 text-[#FFF7E8] font-bold text-sm border border-[#D4AF37]/50 shadow-sm hover:bg-[#5A0808] transition-all backdrop-blur-sm"
               >
-                <LogIn className="w-5 h-5 sm:w-6 sm:h-6 text-[#D4AF37]" />
+                <LogIn className="w-4 h-4 text-[#D4AF37]" />
                 <span>
                   {language === 'gu'
                     ? 'ગૂગલ સાઇન ઇન'
@@ -91,19 +88,19 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
             )}
           </div>
 
-          {/* Guarantees / Badges */}
-          <div className="pt-6 sm:pt-8 border-t border-[#D4AF37]/30 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-[#FFF8ED]/90 font-sans">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-              <span className="font-bold">Multilingual Garba Literature</span>
+          {/* Feature Badges */}
+          <div className="pt-8 border-t border-[#D4AF37]/20 flex flex-wrap items-center justify-center gap-6 text-xs text-[#FFF7E8]/80 font-medium">
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Multilingual Garba Literature</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-              <span className="font-bold">Audio Voice Reference Recordings</span>
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Audio Reference Recordings</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-              <span className="font-bold">Community Garba Creator</span>
+            <div className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Devotional Community</span>
             </div>
           </div>
 
@@ -112,3 +109,4 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
     </div>
   );
 };
+

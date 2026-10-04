@@ -16,48 +16,50 @@ export const LyricsLanguageTabs: React.FC<LyricsLanguageTabsProps> = ({
   const tabs: { id: Language; label: string; sublabel: string }[] = [
     {
       id: 'gu',
-      label: t.lyricsView.gujaratiTab,
-      sublabel: t.lyricsView.originalGujarati,
+      label: 'ગુજરાતી',
+      sublabel: t.lyricsView.originalGujarati || 'Original Garba',
     },
     {
       id: 'hi',
-      label: t.lyricsView.hindiTab,
-      sublabel: t.lyricsView.hindiTranslation,
+      label: 'हिंदी',
+      sublabel: t.lyricsView.hindiTranslation || 'Hindi Script',
     },
     {
       id: 'en',
-      label: t.lyricsView.englishTab,
-      sublabel: t.lyricsView.englishTransliteration,
+      label: 'English',
+      sublabel: t.lyricsView.englishTransliteration || 'English Translation',
     },
   ];
 
   return (
-    <div className="bg-[#3B1111] p-1.5 rounded-2xl border-2 border-[#D4AF37]/50 shadow-xl my-6">
-      <div className="grid grid-cols-3 gap-1.5">
+    <div className="w-full max-w-xl mx-auto my-6 bg-[#500000] p-1.5 rounded-2xl border border-[#D4AF37]/40 shadow-lg">
+      <div className="grid grid-cols-3 gap-1">
         {tabs.map((tab) => {
           const isSelected = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`flex flex-col items-center justify-center py-3 px-2 rounded-xl transition-all duration-200 focus:outline-none ${
+              className={`flex flex-col items-center justify-center py-2.5 px-2 rounded-xl transition-all duration-200 focus:outline-none min-w-0 ${
                 isSelected
-                  ? 'bg-gradient-to-b from-[#8B0000] to-[#B71C1C] text-[#FFF8ED] border-2 border-[#D4AF37] shadow-lg scale-[1.02]'
-                  : 'text-[#FFF8ED]/70 hover:text-[#FFF8ED] hover:bg-[#8B0000]/30'
+                  ? 'bg-gradient-to-b from-[#FFF7E8] to-[#F3E5AB] text-[#3B0A0A] font-bold shadow-md scale-[1.02]'
+                  : 'text-[#FFF7E8]/70 hover:text-[#FFF7E8] hover:bg-[#600000]'
               }`}
             >
               <span
-                className={`text-lg md:text-xl font-bold ${
+                className={`text-base md:text-lg tracking-wide truncate max-w-full ${
                   tab.id === 'gu'
-                    ? 'font-gujarati'
+                    ? 'font-gujarati font-bold'
                     : tab.id === 'hi'
-                    ? 'font-hindi'
-                    : 'font-serif-heading'
-                } ${isSelected ? 'text-[#D4AF37]' : ''}`}
+                    ? 'font-hindi font-bold'
+                    : 'font-serif-title uppercase text-sm font-bold tracking-wider'
+                } ${isSelected ? 'text-[#3B0A0A]' : 'text-[#FFF7E8]'}`}
               >
                 {tab.label}
               </span>
-              <span className="text-[10px] md:text-xs text-[#FFF8ED]/70 mt-0.5 truncate hidden sm:inline-block">
+              <span className={`text-[10px] md:text-xs mt-0.5 truncate max-w-full hidden sm:inline-block ${
+                isSelected ? 'text-[#5A0808]/80 font-medium' : 'text-[#FFF8ED]/60'
+              }`}>
                 {tab.sublabel}
               </span>
             </button>
