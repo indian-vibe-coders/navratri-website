@@ -76,7 +76,7 @@ jobs:
         continue-on-error: true
         run: |
           sleep 30
-          HEALTH_URL="${{ vars.SITE_URL }}/api/health"
+          HEALTH_URL="${{ vars.SITE_URL }}/navswar-api/health"
           echo "Checking health endpoint at $HEALTH_URL..."
           HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" --retry 10 --retry-delay 15 --retry-all-errors "$HEALTH_URL")
           echo "Health check HTTP Status: $HTTP_STATUS"
@@ -86,5 +86,3 @@ jobs:
             echo "Health check failed with status $HTTP_STATUS"
             exit 1
           fi
-
-
