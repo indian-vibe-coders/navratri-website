@@ -53,8 +53,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          security: ${{ vars.FTP_SECURITY || 'strict' }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
+          security: ${{ vars.FTP_SECURITY || 'loose' }}
           local-dir: server/dist/
           server-dir: ${{ vars.API_DIR || 'navswar-api/' }}
 
@@ -64,8 +65,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          security: ${{ vars.FTP_SECURITY || 'strict' }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
+          security: ${{ vars.FTP_SECURITY || 'loose' }}
           local-dir: dist/
           server-dir: ${{ vars.WEB_DIR || 'public_html/' }}
 
@@ -74,6 +76,15 @@ jobs:
         continue-on-error: true
         run: |
           sleep 30
-          curl --fail --silent --show-error --retry 10 --retry-delay 15 --retry-all-errors "${{ vars.SITE_URL }}/api/health"
+          HEALTH_URL="${{ vars.SITE_URL }}/api/health"
+          echo "Checking health endpoint at $HEALTH_URL..."
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" --retry 10 --retry-delay 15 --retry-all-errors "$HEALTH_URL")
+          echo "Health check HTTP Status: $HTTP_STATUS"
+          echo "Response payload:"
+          cat response.json || true
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "Health check failed with status $HTTP_STATUS"
+            exit 1
+          fi
 
 
