@@ -1,3 +1,5 @@
+ErrorDocument 404 /index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -7,6 +9,6 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Rewrite all frontend SPA routes (e.g., /garba/*, /library, /favorites) to index.html
+  # Rewrite all SPA routes to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
