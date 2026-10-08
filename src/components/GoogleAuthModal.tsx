@@ -121,8 +121,8 @@ export const GoogleAuthModal: React.FC = () => {
           </div>
         </div>
 
-        {/* Setup notice if Client ID is missing */}
-        {!hasGoogleClientId && (
+        {/* Setup notice if Client ID is missing (Development mode only) */}
+        {import.meta.env.DEV && !hasGoogleClientId && (
           <div className="bg-[#351010] border border-[#D4AF37]/30 rounded-xl p-3 text-xs space-y-1.5 text-[#FFF7E8]">
             <div className="flex items-center gap-1.5 font-semibold text-[#D4AF37]">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
