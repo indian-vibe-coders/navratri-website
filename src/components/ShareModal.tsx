@@ -14,11 +14,12 @@ export const ShareModal: React.FC<ShareModalProps> = ({ garba, onClose }) => {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const slug = garba.slug || getGarbaSlug({ id: garba.id, title: garba.title, isBuiltin: garba.isBuiltin });
-  const canonicalUrl = `https://garbaraas.in/garba/${slug}`;
+  const siteUrl = import.meta.env.VITE_SITE_URL || 'https://garbaraas.in';
+  const canonicalUrl = `${siteUrl.replace(/\/$/, '')}/garba/${slug}`;
 
   const primaryTitle = garba.title[language] || garba.title.gu || garba.title.en || '';
   const shareText = `🚩 *${primaryTitle}* 🚩\n\n📖 Read full lyrics & listen on Garbaraas:\n${canonicalUrl}`;
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
 
   const handleCopy = async () => {
     let success = false;

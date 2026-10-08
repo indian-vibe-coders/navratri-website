@@ -16,7 +16,7 @@ import { GARBAS_DATA } from './data/garbas';
 import type { Garba, GarbaSummary } from './types';
 import { useFavorites } from './hooks/useFavorites';
 import { fetchSong, fetchSongs, postGarba } from './lib/apiClient';
-import { getGarbaSlug } from './utils/slug';
+import { getGarbaSlug, parseIdFromSlug } from './utils/slug';
 
 type ReturnTab = 'home' | 'garbas' | 'library' | 'favorites';
 
@@ -53,11 +53,19 @@ export const AppContent: React.FC = () => {
     }
 
     if (path.startsWith('/garba/')) {
-      const slug = path.replace(/^\/garba\//, '').replace(/\/+$/, '');
-      if (!slug) return;
+      const cleanPath = path.split('?')[0].split('#')[0];
+      const rawSlug = cleanPath.replace(/^\/garba\//, '').replace(/\/+$/, '');
+      if (!rawSlug) return;
+      const slug = decodeURIComponent(rawSlug).trim();
+
+      const builtinIds = GARBAS_DATA.map((g) => g.id);
+      const targetId = parseIdFromSlug(slug, builtinIds);
 
       const builtin = GARBAS_DATA.find(
-        (g) => g.id.toLowerCase() === slug.toLowerCase() || g.slug?.toLowerCase() === slug.toLowerCase(),
+        (g) =>
+          g.id.toLowerCase() === targetId.toLowerCase() ||
+          g.id.toLowerCase() === slug.toLowerCase() ||
+          g.slug?.toLowerCase() === slug.toLowerCase(),
       );
 
       if (builtin) {
@@ -73,6 +81,18 @@ export const AppContent: React.FC = () => {
         setActiveTab('lyrics');
         setNotFoundError(false);
       } catch {
+        // Fallback try with targetId if slug fetch fails
+        try {
+          if (targetId && targetId !== slug) {
+            const song = await fetchSong(targetId);
+            setSelectedGarba(song);
+            setActiveTab('lyrics');
+            setNotFoundError(false);
+            return;
+          }
+        } catch {
+          // ignore
+        }
         setNotFoundError(true);
       }
     } else {

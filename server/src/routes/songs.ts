@@ -5,7 +5,7 @@ import { GARBAS_DATA } from '../../../src/data/garbas.ts';
 import { pool } from '../db.ts';
 import { ValidationError } from '../validate.ts';
 import { rowToGarba, rowToSummary, SUMMARY_COLUMNS } from '../rows.ts';
-import { getGarbaSlug } from '../utils/slug.ts';
+import { getGarbaSlug, parseIdFromSlug } from '../utils/slug.ts';
 
 export const songsRouter = Router();
 
@@ -89,8 +89,12 @@ songsRouter.get('/songs', async (req, res) => {
 });
 
 songsRouter.get('/songs/:id', async (req, res) => {
+  const builtinIds = GARBAS_DATA.map((g) => g.id);
+  const rawIdOrSlug = req.params.id;
+  const targetId = parseIdFromSlug(rawIdOrSlug, builtinIds);
+
   try {
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ?', [req.params.id]);
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ? OR slug = ?', [targetId, rawIdOrSlug]);
     if (rows.length > 0) {
       res.set('Cache-Control', 'public, max-age=300');
       res.json(rowToGarba(rows[0]));
@@ -98,7 +102,7 @@ songsRouter.get('/songs/:id', async (req, res) => {
     }
   } catch (err) {
     console.error('DB query error on GET /songs/:id:', err);
-    const builtin = GARBAS_DATA.find((g) => g.id === req.params.id);
+    const builtin = GARBAS_DATA.find((g) => g.id.toLowerCase() === targetId.toLowerCase() || g.id.toLowerCase() === rawIdOrSlug.toLowerCase());
     if (builtin) {
       const copy = { ...builtin, slug: getGarbaSlug({ id: builtin.id, title: builtin.title, isBuiltin: true }) };
       res.set('Cache-Control', 'public, max-age=60');
@@ -109,7 +113,7 @@ songsRouter.get('/songs/:id', async (req, res) => {
     return;
   }
 
-  const builtin = GARBAS_DATA.find((g) => g.id === req.params.id);
+  const builtin = GARBAS_DATA.find((g) => g.id.toLowerCase() === targetId.toLowerCase() || g.id.toLowerCase() === rawIdOrSlug.toLowerCase());
   if (builtin) {
     const copy = { ...builtin, slug: getGarbaSlug({ id: builtin.id, title: builtin.title, isBuiltin: true }) };
     res.set('Cache-Control', 'public, max-age=300');
