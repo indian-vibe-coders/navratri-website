@@ -75,7 +75,8 @@ commentsRouter.post('/garbas/:garbaId/comments', writeLimiter, upload.single('au
 
     const id = `comment-${randomBytes(10).toString('hex')}`;
     const deleteToken = randomBytes(24).toString('hex');
-    const audioName = file ? file.originalname.slice(0, 255) : null;
+    const customAudioName = typeof req.body.audioName === 'string' && req.body.audioName.trim() ? req.body.audioName.trim() : null;
+    const audioName = file ? (customAudioName || file.originalname).slice(0, 255) : customAudioName;
 
     await pool.execute(
       `INSERT INTO audio_comments
@@ -83,6 +84,7 @@ commentsRouter.post('/garbas/:garbaId/comments', writeLimiter, upload.single('au
        VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?)`,
       [id, req.params.garbaId, authorName, commentText, file?.filename ?? null, audioName, file ? audioDuration : null, hashToken(deleteToken)],
     );
+
 
     const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM audio_comments WHERE id = ?', [id]);
     // deleteToken is returned only once; the browser keeps it to prove ownership later

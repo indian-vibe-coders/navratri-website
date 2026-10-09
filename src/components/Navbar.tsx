@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Globe, Menu, X, LogIn, LogOut, ChevronDown } from 'lucide-react';
+import { Search, Globe, Menu, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { useAuth } from '../context/AuthContext';
 import type { Language } from '../types';
 
 import navswarLogo from '../assets/navswar_logo.png';
@@ -20,13 +19,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   favoritesCount,
 }) => {
   const { language, setLanguage, t } = useLanguage();
-  const { user, isAuthenticated, openAuthModal, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const navContainerRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
+
 
   const navItems = [
     { id: 'home', label: t.nav.home },
@@ -160,57 +158,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Search className="w-5 h-5" />
             </button>
-
-            {/* 3. Sign In / Profile */}
-            {!isAuthenticated ? (
-              <button
-                onClick={() => openAuthModal()}
-                className="flex items-center gap-2 bg-[#FFF8ED] hover:bg-[#F3E5AB] text-[#4A0000] font-bold px-4 py-2 rounded-xl shadow-sm text-xs transition-all hover:-translate-y-0.5 border border-[#D4AF37]/40"
-              >
-                <LogIn className="w-3.5 h-3.5 text-[#4A0000]" />
-                <span>
-                  {language === 'gu' ? 'સાઇન ઇન' : language === 'hi' ? 'साइन इन' : 'Sign In'}
-                </span>
-              </button>
-            ) : (
-              <div className="relative">
-                <button
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center gap-2 bg-[#4A0505] border border-[#D4AF37]/50 p-1.5 pr-2.5 rounded-xl hover:bg-[#600000] transition-colors shadow-sm"
-                >
-                  <img
-                    src={user?.avatarUrl}
-                    alt={user?.name}
-                    className="w-6 h-6 rounded-lg border border-[#D4AF37]/60 bg-[#500000]"
-                  />
-                  <span className="text-xs font-bold text-[#FFF8ED] max-w-[90px] truncate">
-                    {user?.name}
-                  </span>
-                  <ChevronDown className="w-3.5 h-3.5 text-[#D4AF37]" />
-                </button>
-
-                {showProfileMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-[#4A0505] border border-[#D4AF37]/60 rounded-xl shadow-xl p-2 z-50 animate-in fade-in space-y-1">
-                    <div className="px-3 py-2 border-b border-[#D4AF37]/20">
-                      <p className="text-xs font-bold text-[#FFF8ED] truncate">{user?.name}</p>
-                      <p className="text-[10px] text-[#D4AF37] truncate">{user?.email}</p>
-                    </div>
-
-                    <button
-                      onClick={() => {
-                        logout();
-                        setShowProfileMenu(false);
-                      }}
-                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold text-red-300 hover:bg-[#700000] transition-colors"
-                    >
-                      <LogOut className="w-3.5 h-3.5 text-red-400" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-
           </div>
 
           {/* MOBILE / TABLET UTILITY BAR */}
@@ -222,15 +169,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Search className="w-5 h-5" />
             </button>
 
-            {!isAuthenticated && (
-              <button
-                onClick={() => openAuthModal()}
-                className="flex items-center gap-1.5 bg-[#FFF8ED] text-[#4A0000] font-bold px-3 py-1.5 rounded-lg text-xs shadow-sm"
-              >
-                <LogIn className="w-3.5 h-3.5" />
-                <span>Sign In</span>
-              </button>
-            )}
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -296,29 +234,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
           </div>
-
-          {/* Mobile Profile Sign Out */}
-          {isAuthenticated && (
-            <div className="pt-2 border-t border-[#D4AF37]/20 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <img src={user?.avatarUrl} alt={user?.name} className="w-6 h-6 rounded-lg border border-[#D4AF37]/50" />
-                <span className="text-xs font-bold text-[#FFF8ED]">{user?.name}</span>
-              </div>
-              <button
-                onClick={() => {
-                  logout();
-                  setMobileMenuOpen(false);
-                }}
-                className="flex items-center gap-1 text-xs text-red-300 font-bold"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Sign Out</span>
-              </button>
-            </div>
-          )}
         </div>
       )}
     </header>
+
   );
 };
 

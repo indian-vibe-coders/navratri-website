@@ -1,7 +1,6 @@
 import React from 'react';
-import { Music2, LogIn, Calendar, Sparkles } from 'lucide-react';
+import { Music2, Calendar, Sparkles } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { useAuth } from '../context/AuthContext';
 import maaDurgaImg from '../assets/maa-durga.jpg';
 
 interface HeroProps {
@@ -11,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
   const { language, t } = useLanguage();
-  const { isAuthenticated, openAuthModal } = useAuth();
+
 
   return (
     <div className="relative text-[#FFF7E8] overflow-hidden border-b border-[#D4AF37]/30 min-h-[500px] sm:min-h-[580px] md:min-h-[620px] flex items-center bg-[#5A0808]">
@@ -65,28 +64,13 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button
               onClick={onExplore}
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#351010] font-bold text-sm shadow-md hover:brightness-105 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center gap-8 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-[#351010] font-bold text-sm shadow-md hover:brightness-105 transition-all"
             >
               <Music2 className="w-4 h-4 text-[#351010]" />
               <span>{t.hero.ctaExplore}</span>
             </button>
-
-            {!isAuthenticated && (
-              <button
-                onClick={() => openAuthModal()}
-                className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#3A0404]/80 text-[#FFF7E8] font-bold text-sm border border-[#D4AF37]/50 shadow-sm hover:bg-[#5A0808] transition-all backdrop-blur-sm"
-              >
-                <LogIn className="w-4 h-4 text-[#D4AF37]" />
-                <span>
-                  {language === 'gu'
-                    ? 'ગૂગલ સાઇન ઇન'
-                    : language === 'hi'
-                    ? 'गूगल साइन इन'
-                    : 'Sign In with Google'}
-                </span>
-              </button>
-            )}
           </div>
+
 
           {/* Feature Badges */}
           <div className="pt-8 border-t border-[#D4AF37]/20 flex flex-wrap items-center justify-center gap-6 text-xs text-[#FFF7E8]/80 font-medium">
