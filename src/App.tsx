@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { SearchBarModal } from './components/SearchBarModal';
 import { LyricsViewer } from './components/LyricsViewer';
-import { GoogleAuthModal } from './components/GoogleAuthModal';
 import { AddGarbaModal } from './components/AddGarbaModal';
+
 import { Home } from './pages/Home';
 import { GarbasPage } from './pages/GarbasPage';
 import { FavoritesPage } from './pages/FavoritesPage';
@@ -42,10 +42,10 @@ export const AppContent: React.FC = () => {
   // Favorited songs from other library sections, which aren't in the Navratri list
   const [extraFavorites, setExtraFavorites] = useState<GarbaSummary[]>([]);
 
-  const { user, isAuthenticated, openAuthModal } = useAuth();
-  const { favorites, toggleFavorite, isFavorite } = useFavorites(user?.email);
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
   // Load garba specified in URL (/garba/:slug) on mount or popstate
+
   const loadSongFromPath = useCallback(async (path: string) => {
     if (window.__NOT_FOUND__) {
       setNotFoundError(true);
@@ -202,16 +202,12 @@ export const AppContent: React.FC = () => {
 
   const handleToggleFavorite = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!isAuthenticated) {
-      openAuthModal('Please sign in to save your favorite Garbas!');
-      return;
-    }
     toggleFavorite(id);
   };
 
   const handleAddCustomGarba = async (newGarba: Garba): Promise<boolean> => {
     try {
-      const saved = await postGarba(newGarba, user?.email);
+      const saved = await postGarba(newGarba);
       setRemoteGarbas((prev) => [saved, ...prev]);
       handleSelectGarba(saved, 'lyrics');
       return true;
@@ -227,10 +223,6 @@ export const AppContent: React.FC = () => {
       <Navbar
         activeTab={activeTab}
         setActiveTab={(tab) => {
-          if (tab === 'favorites' && !isAuthenticated) {
-            openAuthModal('Please sign in to access your favorite Garbas!');
-            return;
-          }
           goTo(tab);
         }}
         onOpenSearch={() => setIsSearchOpen(true)}
@@ -284,10 +276,6 @@ export const AppContent: React.FC = () => {
                 isFavorite={isFavorite}
                 onToggleFavorite={handleToggleFavorite}
                 onOpenAddGarba={() => {
-                  if (!isAuthenticated) {
-                    openAuthModal('Please sign in with Google to publish your custom Garba!');
-                    return;
-                  }
                   setIsAddGarbaOpen(true);
                 }}
               />
@@ -343,11 +331,9 @@ export const AppContent: React.FC = () => {
         onAddGarba={handleAddCustomGarba}
       />
 
-      {/* Devotional Google Sign-In Modal Portal */}
-      <GoogleAuthModal />
-
       {/* Footer */}
       <Footer />
+
     </div>
   );
 };

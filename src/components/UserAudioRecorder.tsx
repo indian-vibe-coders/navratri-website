@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { useUserAudio } from '../hooks/useUserAudio';
 import { useLanguage } from '../context/LanguageContext';
-import { useAuth } from '../context/AuthContext';
 
 interface UserAudioRecorderProps {
   garbaId: string;
@@ -25,9 +24,9 @@ interface UserAudioRecorderProps {
 
 export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, title }) => {
   const { t } = useLanguage();
-  const { isAuthenticated, openAuthModal } = useAuth();
   const { audioState, startRecording, stopRecording, uploadAudioFile, removeAudio } =
     useUserAudio(garbaId);
+
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1.0);
@@ -97,20 +96,13 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
   };
 
   const handleStartRecording = () => {
-    if (!isAuthenticated) {
-      openAuthModal('Please sign in with Google to record your voice reference!');
-      return;
-    }
     startRecording();
   };
 
   const handleUploadClick = () => {
-    if (!isAuthenticated) {
-      openAuthModal('Please sign in with Google to upload an audio reference!');
-      return;
-    }
     fileInputRef.current?.click();
   };
+
 
   return (
     <div className="bg-[#2A0505] rounded-3xl border-2 border-[#D4AF37] p-6 md:p-8 text-[#FFF8ED] shadow-2xl space-y-6 card-devotional-shadow relative overflow-hidden">
