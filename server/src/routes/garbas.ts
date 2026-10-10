@@ -9,7 +9,6 @@ import { invalidateLibraryCache } from './songs.ts';
 export const garbasRouter = Router();
 
 garbasRouter.post('/garbas', writeLimiter, async (req, res) => {
-  const userEmail = typeof req.body?.userEmail === 'string' ? req.body.userEmail : null;
   const garba: Garba = {
     id: `custom-garba-${randomBytes(8).toString('hex')}`,
     ...validateNewGarba(req.body),
@@ -18,10 +17,10 @@ garbasRouter.post('/garbas', writeLimiter, async (req, res) => {
   };
 
   const songRow: any = { ...garba, sortOrder: 100000 };
-  if (userEmail) songRow.user_email = userEmail;
 
   await upsertSongs([songRow], false);
   invalidateLibraryCache();
   res.status(201).json(garba);
 });
+
 

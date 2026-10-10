@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { getUserFavorites, saveUserFavorite, removeUserFavorite } from '../lib/apiClient';
 
-export const useFavorites = (userEmail?: string | null) => {
+export const useFavorites = () => {
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('navswar_favorites');
@@ -10,23 +9,6 @@ export const useFavorites = (userEmail?: string | null) => {
       return [];
     }
   });
-
-  // Sync favorites from DB whenever user signs in with Google
-  useEffect(() => {
-    if (!userEmail) return;
-    let isMounted = true;
-    getUserFavorites(userEmail)
-      .then((dbFavs) => {
-        if (isMounted && dbFavs) {
-          setFavorites((prev) => Array.from(new Set([...prev, ...dbFavs])));
-        }
-      })
-      .catch((err) => console.warn('Could not load user favorites from database:', err));
-
-    return () => {
-      isMounted = false;
-    };
-  }, [userEmail]);
 
   useEffect(() => {
     try {
@@ -39,17 +21,7 @@ export const useFavorites = (userEmail?: string | null) => {
   const toggleFavorite = (id: string) => {
     setFavorites((prev) => {
       const exists = prev.includes(id);
-      const updated = exists ? prev.filter((item) => item !== id) : [...prev, id];
-
-      if (userEmail) {
-        if (exists) {
-          removeUserFavorite(userEmail, id).catch((e) => console.warn('Failed to remove DB favorite:', e));
-        } else {
-          saveUserFavorite(userEmail, id).catch((e) => console.warn('Failed to save DB favorite:', e));
-        }
-      }
-
-      return updated;
+      return exists ? prev.filter((item) => item !== id) : [...prev, id];
     });
   };
 
@@ -57,4 +29,5 @@ export const useFavorites = (userEmail?: string | null) => {
 
   return { favorites, setFavorites, toggleFavorite, isFavorite };
 };
+
 
