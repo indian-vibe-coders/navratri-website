@@ -1,5 +1,14 @@
 ErrorDocument 404 /index.html
 
+<IfModule mod_headers.c>
+  # Prevent browsers and LiteSpeed cache from caching index.html
+  <FilesMatch "^(index\.html|404\.html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -12,3 +21,4 @@ ErrorDocument 404 /index.html
   # Rewrite all SPA routes to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
+

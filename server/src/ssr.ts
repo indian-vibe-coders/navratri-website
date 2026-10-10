@@ -22,11 +22,12 @@ export function getIndexTemplate(): string {
   if (cachedTemplate) return cachedTemplate;
 
   const candidates = [
+    path.resolve(currentDir, 'index.html'),
+    path.resolve(currentDir, '../public_html/index.html'),
     path.resolve(process.cwd(), 'dist/index.html'),
     path.resolve(process.cwd(), 'index.html'),
     path.resolve(currentDir, '../dist/index.html'),
     path.resolve(currentDir, '../../dist/index.html'),
-    path.resolve(currentDir, 'index.html'),
   ];
 
   let html = '';
@@ -36,6 +37,7 @@ export function getIndexTemplate(): string {
       break;
     }
   }
+
 
   if (!html) {
     html = `<!DOCTYPE html>
@@ -121,9 +123,12 @@ function prepareHtmlResponse(rawHtml: string, headTags: string, bodyInject: stri
     .replace(/<title>[^<]*<\/title>/gi, '')
     .replace(/<meta\s+name=["']description["'][^>]*>/gi, '')
     .replace(/<link\s+rel=["']canonical["'][^>]*>/gi, '')
-    .replace(/<meta\s+(property|name)=["'](og:|twitter:)[^"']*["'][^>]*>\s*/gi, '');
+    .replace(/<meta\s+(property|name)=["'](og:|twitter:)[^"']*["'][^>]*>\s*/gi, '')
+    .replace(/<!--[\s\S]*?Google Identity Services[\s\S]*?-->/gi, '')
+    .replace(/<script[^>]*accounts\.google\.com[^>]*><\/script>/gi, '');
 
   // 2. Inject fresh tags into <head>
+
   cleaned = cleaned.replace('</head>', `${headTags}\n</head>`);
 
   // 3. Inject body content if present

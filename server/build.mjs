@@ -1,6 +1,6 @@
 // Bundles the API into standalone CommonJS files so the server needs no `npm install`.
 import { build } from 'esbuild';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, copyFileSync, existsSync } from 'node:fs';
 
 await build({
   entryPoints: { app: 'server/src/app.ts', migrate: 'server/src/migrate.ts' },
@@ -20,7 +20,13 @@ writeFileSync(
   JSON.stringify({ name: 'navswar-api', private: true, main: 'app.cjs' }, null, 2) + '\n',
 );
 
+// If client build exists, bundle its index.html directly into server/dist for SSR
+if (existsSync('dist/index.html')) {
+  copyFileSync('dist/index.html', 'server/dist/index.html');
+}
+
 // Passenger restarts the app when tmp/restart.txt changes; a fresh timestamp makes
 // every FTP deploy upload it, which triggers the restart.
 mkdirSync('server/dist/tmp', { recursive: true });
 writeFileSync('server/dist/tmp/restart.txt', `${new Date().toISOString()}\n`);
+
