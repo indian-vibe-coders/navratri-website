@@ -87,7 +87,7 @@ export const useUserAudio = (garbaId: string) => {
   }, [garbaId]);
 
   // Start live voice recording via microphone
-  const startRecording = async () => {
+  const startRecording = async (customName?: string) => {
     try {
       setAudioState((prev) => ({ ...prev, error: null }));
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -110,15 +110,16 @@ export const useUserAudio = (garbaId: string) => {
           return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
         };
         const durationStr = formatTime(audioState.recordingTime);
+        const recordingTitle = customName?.trim() || 'Microphone Voice Recording';
 
-        await saveUserAudioRecord(garbaId, audioBlob, 'Microphone Recording', durationStr);
+        await saveUserAudioRecord(garbaId, audioBlob, recordingTitle, durationStr);
 
         const newUrl = URL.createObjectURL(audioBlob);
         setAudioState((prev) => ({
           ...prev,
           hasAudio: true,
           audioUrl: newUrl,
-          fileName: 'Microphone Voice Recording',
+          fileName: recordingTitle,
           duration: durationStr,
           isRecording: false,
           recordingTime: 0,
@@ -127,6 +128,7 @@ export const useUserAudio = (garbaId: string) => {
         // Stop all track streams
         stream.getTracks().forEach((track) => track.stop());
       };
+
 
       mediaRecorder.start();
 
@@ -156,7 +158,7 @@ export const useUserAudio = (garbaId: string) => {
   };
 
   // Upload custom audio file from device
-  const uploadAudioFile = async (file: File) => {
+  const uploadAudioFile = async (file: File, customName?: string) => {
     try {
       setAudioState((prev) => ({ ...prev, isLoading: true, error: null }));
 
@@ -169,13 +171,14 @@ export const useUserAudio = (garbaId: string) => {
         const m = Math.floor(totalSeconds / 60);
         const s = totalSeconds % 60;
         const durationStr = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        const displayName = customName?.trim() ? `${customName.trim()} - ${file.name}` : file.name;
 
-        await saveUserAudioRecord(garbaId, file, file.name, durationStr);
+        await saveUserAudioRecord(garbaId, file, displayName, durationStr);
 
         setAudioState({
           hasAudio: true,
           audioUrl: tempUrl,
-          fileName: file.name,
+          fileName: displayName,
           duration: durationStr,
           isRecording: false,
           recordingTime: 0,
@@ -183,6 +186,7 @@ export const useUserAudio = (garbaId: string) => {
           error: null,
         });
       };
+
     } catch (err) {
       setAudioState((prev) => ({
         ...prev,

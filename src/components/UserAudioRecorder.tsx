@@ -75,10 +75,12 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
     }
   };
 
+  const [devoteeName, setDevoteeName] = useState('');
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      uploadAudioFile(file);
+      uploadAudioFile(file, devoteeName);
     }
   };
 
@@ -96,12 +98,13 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
   };
 
   const handleStartRecording = () => {
-    startRecording();
+    startRecording(devoteeName);
   };
 
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
+
 
 
   return (
@@ -294,6 +297,20 @@ export const UserAudioRecorder: React.FC<UserAudioRecorderProps> = ({ garbaId, t
           <p className="text-xs text-[#FFF8ED]/70 italic">
             {t.voiceRecorder.noAudioAddedYet}
           </p>
+
+          {/* Devotee Name Input Field (Optional) */}
+          <div className="bg-[#1A0505] p-3 rounded-xl border border-[#D4AF37]/40 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <span className="text-xs font-semibold text-[#D4AF37] whitespace-nowrap">
+              Devotee / Singer Name:
+            </span>
+            <input
+              type="text"
+              value={devoteeName}
+              onChange={(e) => setDevoteeName(e.target.value)}
+              placeholder="Enter your name (e.g. Apeksha)"
+              className="flex-1 bg-[#2A0505] border border-[#D4AF37]/50 rounded-lg px-3 py-1.5 text-xs text-[#FFF8ED] focus:outline-none focus:border-[#D4AF37]"
+            />
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             
