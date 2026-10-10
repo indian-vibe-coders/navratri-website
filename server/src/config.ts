@@ -2,8 +2,9 @@ import 'dotenv/config';
 import path from 'node:path';
 
 export const config = {
-  port: Number(process.env.PORT) || 3001,
+  port: process.env.PORT || 3001,
   isProduction: process.env.NODE_ENV === 'production',
+
   db: {
     host: process.env.DB_HOST || 'localhost',
     port: Number(process.env.DB_PORT) || 3306,

@@ -64,7 +64,7 @@ app.get('/robots.txt', handleRobotsTxt);
 app.get('/garba/:slug', handleGarbaSsr);
 
 // Root / API fallthrough
-app.use('/api/*', (_req, res) => {
+app.use('/api', (_req, res) => {
   res.status(404).json({ error: 'API route not found' });
 });
 
@@ -91,23 +91,23 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 };
 app.use(errorHandler);
 
-// No shell access on the host, so schema setup runs at boot. A database failure is logged
-// but doesn't stop the server; /api/health will report it.
-async function start() {
+// Listen immediately so Passenger recognizes the running process
+app.listen(config.port, () => {
+  console.log(`NavSwar API listening on port ${config.port}`);
+});
+
+// Run migrations and data import in background
+async function initDatabase() {
   try {
     await runMigrations();
   } catch (err) {
     console.error('Startup migration failed:', err);
   }
 
-  app.listen(config.port, () => {
-    console.log(`NavSwar API listening on port ${config.port}`);
-  });
-
-  // A song-library upload can take a while to import, so do it after we're serving requests
   importPendingData()
     .then((imported) => imported && invalidateLibraryCache())
     .catch((err) => console.error('Library import failed:', err));
 }
 
-start();
+initDatabase();
+
