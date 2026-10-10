@@ -125,8 +125,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             />
           </nav>
 
-          {/* RIGHT: Language Selector, Clean Search Icon & Sign In */}
+          {/* RIGHT: Language Selector & Clean Search Icon */}
           <div className="hidden md:flex items-center gap-4 lg:gap-6">
+
             
             {/* 1. Language Selector: Clean inline text with gold vertical dividers */}
             <div className="flex items-center text-xs text-[#FFF8ED]/70 font-medium">
