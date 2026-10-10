@@ -1,13 +1,19 @@
 ErrorDocument 404 /index.html
 
+<IfModule LiteSpeed>
+  CacheLookup off
+</IfModule>
+
 <IfModule mod_headers.c>
   # Prevent browsers and LiteSpeed cache from caching index.html
   <FilesMatch "^(index\.html|404\.html)$">
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
     Header set Pragma "no-cache"
     Header set Expires "0"
+    Header set X-LiteSpeed-Purge "*"
   </FilesMatch>
 </IfModule>
+
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
