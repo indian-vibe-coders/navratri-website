@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { LanguageProvider } from './context/LanguageContext';
-import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { SearchBarModal } from './components/SearchBarModal';
@@ -341,9 +340,8 @@ export const AppContent: React.FC = () => {
 export default function App() {
   return (
     <LanguageProvider>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
+      <AppContent />
     </LanguageProvider>
   );
 }
+
