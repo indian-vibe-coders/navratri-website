@@ -94,7 +94,7 @@ songsRouter.get('/songs/:id', async (req, res) => {
   const targetId = parseIdFromSlug(rawIdOrSlug, builtinIds);
 
   try {
-    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ? OR slug = ?', [targetId, rawIdOrSlug]);
+    const [rows] = await pool.query<RowDataPacket[]>('SELECT * FROM garbas WHERE id = ? OR id = ?', [targetId, rawIdOrSlug]);
     if (rows.length > 0) {
       res.set('Cache-Control', 'public, max-age=300');
       res.json(rowToGarba(rows[0]));
