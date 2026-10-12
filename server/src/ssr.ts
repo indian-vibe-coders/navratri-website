@@ -131,8 +131,14 @@ function prepareHtmlResponse(rawHtml: string, headTags: string, bodyInject: stri
     .replace(/<!--[\s\S]*?Google Identity Services[\s\S]*?-->/gi, '')
     .replace(/<script[^>]*accounts\.google\.com[^>]*><\/script>/gi, '');
 
-  // 2. Inject fresh tags into <head>
+  // Guarantee root HTML element has lang="en", translate="no", and notranslate
+  cleaned = cleaned.replace(/<html[^>]*>/i, '<html lang="en" translate="no" class="notranslate">');
+  cleaned = cleaned.replace(/<body([^>]*)>/i, (_match, attrs) => {
+    if (attrs.includes('notranslate')) return `<body${attrs}>`;
+    return `<body class="notranslate"${attrs}>`;
+  });
 
+  // 2. Inject fresh tags into <head>
   cleaned = cleaned.replace('</head>', `${headTags}\n</head>`);
 
   // 3. Inject body content if present

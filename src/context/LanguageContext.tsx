@@ -28,7 +28,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   useEffect(() => {
-    document.documentElement.lang = language;
+    // Keep document language as 'en' with translate="no" so Chrome/Edge never consider the page
+    // foreign text and never show the "Translate page from Gujarati?" banner.
+    document.documentElement.lang = 'en';
     document.documentElement.setAttribute('translate', 'no');
     document.documentElement.classList.add('notranslate');
   }, [language]);
