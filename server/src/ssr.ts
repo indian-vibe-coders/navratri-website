@@ -41,13 +41,15 @@ export function getIndexTemplate(): string {
 
   if (!html) {
     html = `<!DOCTYPE html>
-<html lang="gu">
+<html lang="gu" translate="no" class="notranslate">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate">
+  <meta name="googlebot" content="notranslate">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NavSwar Divine Garba</title>
 </head>
-<body>
+<body class="notranslate">
   <div id="root"></div>
 </body>
 </html>`;
@@ -83,6 +85,8 @@ function buildHeadTags(opts: {
   let tags = `
   <title>${titleEsc}</title>
   <meta name="description" content="${descEsc}" />
+  <meta name="google" content="notranslate" />
+  <meta name="googlebot" content="notranslate" />
   <link rel="canonical" href="${urlEsc}" />
 `;
 

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "tu-kali-ne-kalyani-re-ma-jya-jou-tya-jogmaya-659bfe94",
+    "titleGu": "તું કાળી ને કલ્યાણી રે મા",
+    "titleEn": "Tu kali ne kalyani re ma jya jou tya jogmaya",
+    "category": "Traditional",
+    "issueTypes": [
+      "EXCESSIVE_REPETITION"
+    ],
+    "details": [
+      "Single line \"જ્યાં જોઉં ત્યાં જોગમાયા...\" repeats 14 times out of 28 lines."
+    ],
+    "totalGuLines": 28,
+    "sampleLyricsGu": "તું  કાળી   ને   કલ્યાણી   રે મા, / જ્યાં જોઉં ત્યાં જોગમાયા"
+  },
+  {
+    "id": "ma-nu-leriyu-lehray-7d8f5cd3",
+    "titleGu": "લીલુડાં રંગ નું લેરીયું રે રંગ લેરીયું રે",
+    "titleEn": "Ma nu leriyu lehray",
+    "category": "Traditional",
+    "issueTypes": [
+      "EXCESSIVE_REPETITION"
+    ],
+    "details": [
+      "Single line \"માનું લેરીયું  લ્હેરાય...\" repeats 13 times out of 26 lines."
+    ],
+    "totalGuLines": 26,
+    "sampleLyricsGu": "લીલુડાં રંગ નું લેરીયું  રે રંગ લેરીયું રે / માનું લેરીયું  લ્હેરાય"
+  },
+  {
+    "id": "ram-rakshastotram-c80433e3",
+    "titleGu": "શ્રીરામરક્ષાસ્તોત્ર",
+    "titleEn": "Ram rakshastotram",
+    "category": "Traditional",
+    "issueTypes": [
+      "JUNK_OR_PLACEHOLDER"
+    ],
+    "details": [
+      "Contains scraping placeholders, URLs, file extensions (.php), or NaN/undefined."
+    ],
+    "totalGuLines": 104,
+    "sampleLyricsGu": "॥ શ્રીરામરક્ષાસ્તોત્ર ॥ / ॥ ૐ શ્રીગણેશાય નમઃ ॥"
+  },
+  {
+    "id": "randal-ma-no-divdo-toye-na-bujay-7c9f8d16",
+    "titleGu": "વરસે ભલે વાદળીને વાયુ ભલે વાય, (2)",
+    "titleEn": "Randal ma no divdo toye na bujay",
+    "category": "Traditional",
+    "issueTypes": [
+      "TITLE_CORRUPTION"
+    ],
+    "details": [
+      "Title has formatting issues: gu=\"વરસે ભલે વાદળીને વાયુ ભલે વાય, (2)\", en=\"Randal ma no divdo toye na bujay\"."
+    ],
+    "totalGuLines": 6,
+    "sampleLyricsGu": "વરસે ભલે વાદળીને વાયુ ભલે વાય, (2) / રાંદલમાનો દીવડો તોયે ન બુજાય તોયે ન બુજાય."
+  },
+  {
+    "id": "gagan-mandal-ni-gagardi-gun-garbi-re-03f0d3bc",
+    "titleGu": "ગગન મંડળની ગાગરડી, ગુણ ગરબી રે",
+    "titleEn": "Gagan mandal ni gagardi gun garbi re",
+    "category": "Traditional",
+    "issueTypes": [
+      "SEVERELY_TRUNCATED"
+    ],
+    "details": [
+      "Only 2 lines total (14 words)."
+    ],
+    "totalGuLines": 2,
+    "sampleLyricsGu": "ગગન મંડળની ગાગરડી, ગુણ ગરબી રે, / તેણિ રમિ ભવાની રાસ, ગાઉં ગુણ ગરબી રે."
+  },
+  {
+    "id": "jyare-rat-badhi-radhiyali-thay-jyare-divdao-jagmag-thay-230becff",
+    "titleGu": "જ્યારે રાત બધી રઢિયાળી થાય.. (2)",
+    "titleEn": "Jyare rat badhi radhiyali thay jyare divdao jagmag thay",
+    "category": "Traditional",
+    "issueTypes": [
+      "TITLE_CORRUPTION"
+    ],
+    "details": [
+      "Title has formatting issues: gu=\"જ્યારે રાત બધી રઢિયાળી થાય.. (2)\", en=\"Jyare rat badhi radhiyali thay jyare divdao jagmag thay\"."
+    ],
+    "totalGuLines": 6,
+    "sampleLyricsGu": "જ્યારે રાત બધી રઢિયાળી થાય.. (2) / જ્યારે દિવડાઓ જગ મગ થાય .. (2)"
+  },
+  {
+    "id": "gopal-maro-paraniye-jule-re-7fe446ab",
+    "titleGu": "ગોપાલ મારો પારણીયે જુલે રે",
+    "titleEn": "Gopal maro paraniye jule re",
+    "category": "Traditional",
+    "issueTypes": [
+      "TRANSLITERATION_LINE_MISMATCH"
+    ],
+    "details": [
+      "Line mismatch: Gujarati has 40 lines but English has 15 lines."
+    ],
+    "totalGuLines": 40,
+    "sampleLyricsGu": "ગોપાલ મારો પારણીયે જુલે રે / ગોપાલ મારો પારણીયે જુલે રે"
+  },
+  {
+    "id": "tara-re-nam-no-chhedyo-aek-taro-1d34acfc",
+    "titleGu": "તારા રે નામનો છેડ્યો એક તારો",
+    "titleEn": "Tara re nam no chhedyo aek taro",
+    "category": "Traditional",
+    "issueTypes": [
+      "TRANSLITERATION_LINE_MISMATCH"
+    ],
+    "details": [
+      "Line mismatch: Gujarati has 12 lines but English has 25 lines."
+    ],
+    "totalGuLines": 12,
+    "sampleLyricsGu": "તારા રે નામનો છેડ્યો એક તારો / હું તારી મીરા તુ ગીરીધર મારો"
+  },
+  {
+    "id": "sakhi-marwad-javu-mari-bhari-juvani-jay-b0bc9bff",
+    "titleGu": "સખી મારવાડ ઝાવું રે... મારી ભરી ઝુવાની ઝાય",
+    "titleEn": "Sakhi marwad javu mari bhari juvani jay",
+    "category": "Traditional",
+    "issueTypes": [
+      "SEVERELY_TRUNCATED"
+    ],
+    "details": [
+      "Only 2 lines total (17 words)."
+    ],
+    "totalGuLines": 2,
+    "sampleLyricsGu": "સખી મારવાડ ઝાવું રે... મારી ભરી ઝુવાની ઝાય.... / સખી મારવાડા ના લાડકા મને ભાળી ને સીટી મારે..."
+  }
+]

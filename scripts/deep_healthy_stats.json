@@ -1,0 +1,107 @@
+{
+  "totalChecked": 455,
+  "avgLinesPerSong": 22,
+  "minLines": 4,
+  "maxLines": 236,
+  "lineDistribution": {
+    "4-8": 20,
+    "9-15": 143,
+    "16-30": 199,
+    "31+": 86
+  },
+  "shortSongsCount": 6,
+  "shortSongs": [
+    {
+      "id": "pachhali-rat-na-nath-pachha-valya-shu-karu-re-sakhi-fa4f1941",
+      "title": "પાછલી રાતના નાથ પાછા વળ્યા, શું કરું રે સખી ? હું ન જાગી",
+      "lines": 6
+    },
+    {
+      "id": "sami-re-sanj-na-sod-ma-suta-nandali-ae-sad-kidho-re-cc6965eb",
+      "title": "સમીરે સાંજના સોડમાં સુતાં, નણદલીએ સાદ કીધો રે",
+      "lines": 6
+    },
+    {
+      "id": "amshu-kapat-tani-vat-j-chhand-4124de34",
+      "title": "અમશું કપટતણી વાતજ છાંડ, મારે ઘેર આવો તો",
+      "lines": 6
+    },
+    {
+      "id": "ruda-ruda-norta-aavya-kirtidan-gadhvi-6eb98418",
+      "title": "રૂડા રૂડા નોરતા આવ્યા",
+      "lines": 4
+    },
+    {
+      "id": "aavta-jata-jrane-garbo-mandta-jajo-fe8945b1",
+      "title": "આવતા જતા જરા નજર તો નાખતા જજો",
+      "lines": 6
+    },
+    {
+      "id": "jino-jino-ude-re-gulal-madi-tara-mandir-ma-15ac28e9",
+      "title": "જીણો જીણો ઉડે રે ગુલાલ, માં ના મંદિરમાં",
+      "lines": 6
+    }
+  ],
+  "sampledSongs": [
+    {
+      "id": "amba-abhay-pad-dayini",
+      "titleGu": "અંબા અભય પદ દાયિની રે",
+      "titleEn": "Amba Abhay Pad Dayini Re",
+      "linesCount": 24,
+      "firstThreeLines": [
+        "અંબા અભય પદ દાયિની રે,",
+        "શ્યામા સાંભળજો સાદ ભીડ ભંજની,",
+        "અંબા અભય પદ દાયિની રે..."
+      ],
+      "lastLine": "અંબા અભય પદ દાયિની રે, મા અંબા અભય પદ દાયિની રે !"
+    },
+    {
+      "id": "kumkum-na-pagla-padya",
+      "titleGu": "કુમકુમ ના પગલાં પડ્યાં",
+      "titleEn": "Kumkum Na Pagla Padya",
+      "linesCount": 15,
+      "firstThreeLines": [
+        "કુમકુમ ના પગલાં પડ્યાં માડી ના રાજ માં,",
+        "આવો રે અંબે માડી તમ કાજે દીવડા પ્રગટાવ્યા...",
+        "આસો ભરેલો ગરબો માડી નો શણગાર્યો,"
+      ],
+      "lastLine": "બોલો અંબે માત કી જય ! બોલો બહુચર માત કી જય !"
+    },
+    {
+      "id": "pankhida-o-pankhida",
+      "titleGu": "પંખીડા ઓ પંખીડા",
+      "titleEn": "Pankhida O Pankhida",
+      "linesCount": 13,
+      "firstThreeLines": [
+        "પંખીડા ઓ પંખીડા, આસો પાવાગઢ જઈને કહેજે રે !",
+        "મહાકાળી મા ને મારા પ્રણામ કહેજે રે...",
+        "ઊંચા ઊંચા ડુંગરા ને ઊંડી ઊંડી ખીણ,"
+      ],
+      "lastLine": "બોલો મહાકાળી માત કી જય ! બોલો પાવાગઢ વાળી માત કી જય !"
+    },
+    {
+      "id": "custom-garba-2365a7c79663946d",
+      "titleGu": "GayGarba",
+      "titleEn": "GayGarba",
+      "linesCount": 16,
+      "firstThreeLines": [
+        "Tane Jata Joi Panghat Ni Vate Maru Man Mohi Gayu Gujarati Garba Lyrics",
+        "He tane jata joi panghat ni vate,",
+        "Maru man mohi gayu,"
+      ],
+      "lastLine": "Maru man mohi gayu..."
+    },
+    {
+      "id": "jay-adhya-shakti-aarti",
+      "titleGu": "જય આદ્ય શક્તિ આરતી",
+      "titleEn": "Jay Adya Shakti Aarti",
+      "linesCount": 64,
+      "firstThreeLines": [
+        "જય આદ્ય શક્તિ મા જય આદ્ય શક્તિ,",
+        "અખંડ બ્રહ્માંડ નિપાવ્યા, પડવે પ્રગટ થયાં મા,",
+        "ઓમ જયો જયો મા જગદંબે !"
+      ],
+      "lastLine": "બોલો અંબે માત કી જય ! બોલો આદ્ય શક્તિ માત કી જય !"
+    }
+  ]
+}
