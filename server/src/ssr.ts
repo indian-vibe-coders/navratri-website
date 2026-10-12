@@ -41,11 +41,16 @@ export function getIndexTemplate(): string {
 
   if (!html) {
     html = `<!DOCTYPE html>
-<html lang="gu" translate="no" class="notranslate">
+<html lang="en" translate="no" class="notranslate">
 <head>
   <meta charset="UTF-8">
   <meta name="google" content="notranslate">
   <meta name="googlebot" content="notranslate">
+  <meta name="robots" content="notranslate">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NavSwar Divine Garba</title>
 </head>
