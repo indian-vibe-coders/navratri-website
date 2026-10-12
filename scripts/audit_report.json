@@ -1,0 +1,893 @@
+{
+  "totalScanned": 510,
+  "totalWithIssues": 56,
+  "totalValid": 454,
+  "issuesByType": {
+    "SEVERELY_TRUNCATED": 49,
+    "MISSING_GUJARATI_SCRIPT": 47,
+    "EXCESSIVE_REPETITION": 2,
+    "JUNK_OR_PLACEHOLDER": 1,
+    "TITLE_CORRUPTION": 2,
+    "TRANSLITERATION_LINE_MISMATCH": 2
+  },
+  "issues": [
+    {
+      "id": "lyrics-is-not-available-86f0688b",
+      "titleGu": "Lyrics_is_not_available",
+      "titleEn": "Lyrics_is_not_available",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "tu-kali-ne-kalyani-re-ma-jya-jou-tya-jogmaya-659bfe94",
+      "titleGu": "તું કાળી ને કલ્યાણી રે મા",
+      "titleEn": "Tu kali ne kalyani re ma jya jou tya jogmaya",
+      "category": "Traditional",
+      "issueTypes": [
+        "EXCESSIVE_REPETITION"
+      ],
+      "details": [
+        "Single line \"જ્યાં જોઉં ત્યાં જોગમાયા...\" repeats 14 times out of 28 lines."
+      ],
+      "totalGuLines": 28,
+      "sampleLyricsGu": "તું  કાળી   ને   કલ્યાણી   રે મા, / જ્યાં જોઉં ત્યાં જોગમાયા"
+    },
+    {
+      "id": "ma-nu-leriyu-lehray-7d8f5cd3",
+      "titleGu": "લીલુડાં રંગ નું લેરીયું રે રંગ લેરીયું રે",
+      "titleEn": "Ma nu leriyu lehray",
+      "category": "Traditional",
+      "issueTypes": [
+        "EXCESSIVE_REPETITION"
+      ],
+      "details": [
+        "Single line \"માનું લેરીયું  લ્હેરાય...\" repeats 13 times out of 26 lines."
+      ],
+      "totalGuLines": 26,
+      "sampleLyricsGu": "લીલુડાં રંગ નું લેરીયું  રે રંગ લેરીયું રે / માનું લેરીયું  લ્હેરાય"
+    },
+    {
+      "id": "ram-rakshastotram-c80433e3",
+      "titleGu": "શ્રીરામરક્ષાસ્તોત્ર",
+      "titleEn": "Ram rakshastotram",
+      "category": "Traditional",
+      "issueTypes": [
+        "JUNK_OR_PLACEHOLDER"
+      ],
+      "details": [
+        "Contains scraping placeholders, URLs, file extensions (.php), or NaN/undefined."
+      ],
+      "totalGuLines": 104,
+      "sampleLyricsGu": "॥ શ્રીરામરક્ષાસ્તોત્ર ॥ / ॥ ૐ શ્રીગણેશાય નમઃ ॥"
+    },
+    {
+      "id": "maman-na-menla-bhange-bhari-ma-jay-khodiyar-ma-jay-khodiyar-ma-7c574f94",
+      "titleGu": "Maman na menla bhange bhari ma jay khodiyar ma jay khodiyar ma",
+      "titleEn": "Maman na menla bhange bhari ma jay khodiyar ma jay khodiyar ma",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "randal-ma-no-divdo-toye-na-bujay-7c9f8d16",
+      "titleGu": "વરસે ભલે વાદળીને વાયુ ભલે વાય, (2)",
+      "titleEn": "Randal ma no divdo toye na bujay",
+      "category": "Traditional",
+      "issueTypes": [
+        "TITLE_CORRUPTION"
+      ],
+      "details": [
+        "Title has formatting issues: gu=\"વરસે ભલે વાદળીને વાયુ ભલે વાય, (2)\", en=\"Randal ma no divdo toye na bujay\"."
+      ],
+      "totalGuLines": 6,
+      "sampleLyricsGu": "વરસે ભલે વાદળીને વાયુ ભલે વાય, (2) / રાંદલમાનો દીવડો તોયે ન બુજાય તોયે ન બુજાય."
+    },
+    {
+      "id": "gagan-mandal-ni-gagardi-gun-garbi-re-03f0d3bc",
+      "titleGu": "ગગન મંડળની ગાગરડી, ગુણ ગરબી રે",
+      "titleEn": "Gagan mandal ni gagardi gun garbi re",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED"
+      ],
+      "details": [
+        "Only 2 lines total (14 words)."
+      ],
+      "totalGuLines": 2,
+      "sampleLyricsGu": "ગગન મંડળની ગાગરડી, ગુણ ગરબી રે, / તેણિ રમિ ભવાની રાસ, ગાઉં ગુણ ગરબી રે."
+    },
+    {
+      "id": "jyare-rat-badhi-radhiyali-thay-jyare-divdao-jagmag-thay-230becff",
+      "titleGu": "જ્યારે રાત બધી રઢિયાળી થાય.. (2)",
+      "titleEn": "Jyare rat badhi radhiyali thay jyare divdao jagmag thay",
+      "category": "Traditional",
+      "issueTypes": [
+        "TITLE_CORRUPTION"
+      ],
+      "details": [
+        "Title has formatting issues: gu=\"જ્યારે રાત બધી રઢિયાળી થાય.. (2)\", en=\"Jyare rat badhi radhiyali thay jyare divdao jagmag thay\"."
+      ],
+      "totalGuLines": 6,
+      "sampleLyricsGu": "જ્યારે રાત બધી રઢિયાળી થાય.. (2) / જ્યારે દિવડાઓ જગ મગ થાય .. (2)"
+    },
+    {
+      "id": "tane-ha-na-karu-tane-hana-karu-83df81b6",
+      "titleGu": "Tane ha na karu tane hana karu",
+      "titleEn": "Tane ha na karu tane hana karu",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "ae-moraliyo-madhuvan-ma-mor-bolyo-4b3c465d",
+      "titleGu": "Ae moraliyo madhuvan ma mor bolyo",
+      "titleEn": "Ae moraliyo madhuvan ma mor bolyo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "pili-matukadi-laviya-ne-ea49b0ca",
+      "titleGu": "pili matukadi laviya ne",
+      "titleEn": "Pili matukadi laviya ne",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "gopal-maro-paraniye-jule-re-7fe446ab",
+      "titleGu": "ગોપાલ મારો પારણીયે જુલે રે",
+      "titleEn": "Gopal maro paraniye jule re",
+      "category": "Traditional",
+      "issueTypes": [
+        "TRANSLITERATION_LINE_MISMATCH"
+      ],
+      "details": [
+        "Line mismatch: Gujarati has 40 lines but English has 15 lines."
+      ],
+      "totalGuLines": 40,
+      "sampleLyricsGu": "ગોપાલ મારો પારણીયે જુલે રે / ગોપાલ મારો પારણીયે જુલે રે"
+    },
+    {
+      "id": "ghume-ma-ambika-no-garbo-re-lol-83896470",
+      "titleGu": "Ghume ma ambika no garbo re lol",
+      "titleEn": "Ghume ma ambika no garbo re lol",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "nhi-jau-re-jamuna-ne-panida-19f48f5a",
+      "titleGu": "Nhi jau re jamuna ne panida",
+      "titleEn": "Nhi jau re jamuna ne panida",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "radha-taro-shyam-na-rokyo-bhulyo-mari-prit-87fe3bd5",
+      "titleGu": "Radha taro shyam na rokyo bhulyo mari prit",
+      "titleEn": "Radha taro shyam na rokyo bhulyo mari prit",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "antar-na-aarasur-tame-ma-tame-accdeeef",
+      "titleGu": "Antar na aarasur tame ma tame",
+      "titleEn": "Antar na aarasur tame ma tame",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "ae-re-maro-saybo-e2d76e9c",
+      "titleGu": "Ae re maro saybo",
+      "titleEn": "Ae re maro saybo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "pataliyo-pajve-chhe-cbe8eb6b",
+      "titleGu": "Pataliyo pajve chhe",
+      "titleEn": "Pataliyo pajve chhe",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "meto-kumkum-chhanti-ne-kagal-mokalyo-ec45861c",
+      "titleGu": "Meto kumkum chhanti ne kagal mokalyo",
+      "titleEn": "Meto kumkum chhanti ne kagal mokalyo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "garbe-ramva-ne-aavo-ambe-ma-aavi-rudi-punam-ni-rat-re-ee68220e",
+      "titleGu": "Garbe ramva ne aavo ambe ma aavi rudi punam ni rat re",
+      "titleEn": "Garbe ramva ne aavo ambe ma aavi rudi punam ni rat re",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "bhuva-dhune-ma-na-bhuva-dhune-aaj-mri-meldi-garbe-jume-ba2b2470",
+      "titleGu": "Bhuva dhune ma na bhuva dhune aaj mri meldi garbe jume",
+      "titleEn": "Bhuva dhune ma na bhuva dhune aaj mri meldi garbe jume",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "hokaliyo-kiya-gam-gyo-to-a1924e91",
+      "titleGu": "Hokaliyo kiya gam gyo to",
+      "titleEn": "Hokaliyo kiya gam gyo to",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "popat-joine-jani-meto-ponjaru-panjru-ponzaru-ghadayu-hudla-tari-boli-m-04e6133d",
+      "titleGu": "Popat joine (jani) meto ponjaru (panjru) (ponzaru) ghadayu hudla tari boli mane mithi mithi lage",
+      "titleEn": "Popat joine (jani) meto ponjaru (panjru) (ponzaru) ghadayu hudla tari boli mane mithi mithi lage",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "vanjara-vanjara-vanjara-243301dd",
+      "titleGu": "Vanjara Vanjara Vanjara",
+      "titleEn": "Vanjara Vanjara Vanjara",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "mavtar-malo-to-mara-ambe-jeva-maljo-eb91abcb",
+      "titleGu": "Mavtar malo to mara ambe jeva maljo",
+      "titleEn": "Mavtar malo to mara ambe jeva maljo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "kanudo-jilva-hedyo-re-gopiyo-gopio-gopiao-chhede-pdi-re-769c37ee",
+      "titleGu": "kanudo jilva hedyo re gopiyo (gopio) (gopiao) chhede pdi re",
+      "titleEn": "Kanudo jilva hedyo re gopiyo (gopio) (gopiao) chhede pdi re",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "jina-jina-janjar-no-jankar-be654900",
+      "titleGu": "Jina Jina janjar no jankar",
+      "titleEn": "Jina Jina janjar no jankar",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "sau-lok-sathe-maro-nato-ame-kyare-laiye-mulakato-b999aa0b",
+      "titleGu": "Sau lok sathe maro nato ame kyare laiye mulakato",
+      "titleEn": "Sau lok sathe maro nato ame kyare laiye mulakato",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "tara-re-nam-no-chhedyo-aek-taro-1d34acfc",
+      "titleGu": "તારા રે નામનો છેડ્યો એક તારો",
+      "titleEn": "Tara re nam no chhedyo aek taro",
+      "category": "Traditional",
+      "issueTypes": [
+        "TRANSLITERATION_LINE_MISMATCH"
+      ],
+      "details": [
+        "Line mismatch: Gujarati has 12 lines but English has 25 lines."
+      ],
+      "totalGuLines": 12,
+      "sampleLyricsGu": "તારા રે નામનો છેડ્યો એક તારો / હું તારી મીરા તુ ગીરીધર મારો"
+    },
+    {
+      "id": "aavo-ne-ramva-ne-aavo-ne-tame-dandiya-ramva-aavo-1de61856",
+      "titleGu": "Aavo ne ramva ne aavo ne tame dandiya ramva aavo",
+      "titleEn": "Aavo ne ramva ne aavo ne tame dandiya ramva aavo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "vayro-bolave-tane-megh-aav-megh-aav-825808c2",
+      "titleGu": "vayro bolave tane megh aav megh aav",
+      "titleEn": "Vayro bolave tane megh aav megh aav",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "ma-aaso-te-sud-ma-396d81a4",
+      "titleGu": "ma aaso te sud ma",
+      "titleEn": "Ma aaso te sud ma",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "mara-palav-no-chhedlo-ne-ao-chhagala-re-ke-man-maru-malke-chhe-e9f4d0bd",
+      "titleGu": "mara palav no chhedlo ne ao chhagala re ke man maru malke chhe",
+      "titleEn": "Mara palav no chhedlo ne ao chhagala re ke man maru malke chhe",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "lumbuda-jule-mara-bag-ma-35d39f47",
+      "titleGu": "lumbuda jule mara bag ma",
+      "titleEn": "Lumbuda jule mara bag ma",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "kum-kum-pagle-madi-vdhavu-re-01c8df2c",
+      "titleGu": "kum kum pagle madi vdhavu re",
+      "titleEn": "Kum kum pagle madi vdhavu re",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "halaji-tara-hath-vakhanu-ke-patti-tara-pag-vakhanu-98d4dec5",
+      "titleGu": "halaji tara hath vakhanu ke patti tara pag vakhanu",
+      "titleEn": "Halaji tara hath vakhanu ke patti tara pag vakhanu",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "sakhi-kuvane-kanthe-kevdo-3aad6301",
+      "titleGu": "sakhi kuvane kanthe kevdo",
+      "titleEn": "Sakhi kuvane kanthe kevdo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "sakhi-marwad-javu-mari-bhari-juvani-jay-b0bc9bff",
+      "titleGu": "સખી મારવાડ ઝાવું રે... મારી ભરી ઝુવાની ઝાય",
+      "titleEn": "Sakhi marwad javu mari bhari juvani jay",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED"
+      ],
+      "details": [
+        "Only 2 lines total (17 words)."
+      ],
+      "totalGuLines": 2,
+      "sampleLyricsGu": "સખી મારવાડ ઝાવું રે... મારી ભરી ઝુવાની ઝાય.... / સખી મારવાડા ના લાડકા મને ભાળી ને સીટી મારે..."
+    },
+    {
+      "id": "ponjre-me-popat-bole-8c5912fe",
+      "titleGu": "ponjre me popat bole",
+      "titleEn": "Ponjre me popat bole",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "garvi-re-gujrat-ma-thakur-vat-chhe-tamaro-026590bf",
+      "titleGu": "Garvi re gujrat ma thakur vat chhe tamaro",
+      "titleEn": "Garvi re gujrat ma thakur vat chhe tamaro",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "bandhyo-chhe-hirla-ne-dor-madi-taro-garbo-chhe-jakam-jod-9f523f2b",
+      "titleGu": "bandhyo chhe hirla ne dor madi taro garbo chhe jakam jod",
+      "titleEn": "Bandhyo chhe hirla ne dor madi taro garbo chhe jakam jod",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "jo-bka-aapde-to-gujrati-ne-chhappan-ich-ni-chhati-0a65d7db",
+      "titleGu": "jo bka aapde to gujrati ne chhappan ich ni chhati",
+      "titleEn": "Jo bka aapde to gujrati ne chhappan ich ni chhati",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "sona-no-garbo-rupa-no-garbo-42dbe3ac",
+      "titleGu": "sona no garbo rupa no garbo",
+      "titleEn": "Sona no garbo rupa no garbo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "aav-re-kana-aav-aav-re-kana-aav-vanma-radha-vat-juve-95a04fe8",
+      "titleGu": "aav re kana aav aav re kana aav vanma radha vat juve",
+      "titleEn": "Aav re kana aav aav re kana aav vanma radha vat juve",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "mahakali-no-ghammar-ghaduliyo-b17b60b4",
+      "titleGu": "Mahakali no ghammar ghaduliyo",
+      "titleEn": "Mahakali no ghammar ghaduliyo",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "kan-tari-morali-ae-mohi-ne-mane-mosal-melya-612da571",
+      "titleGu": "Kan tari morali ae mohi ne mane mosal melya",
+      "titleEn": "Kan tari morali ae mohi ne mane mosal melya",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "aai-padve-thi-pehlu-manu-nortu-jire-bije-adhik-upvas-ce143dd1",
+      "titleGu": "Aai padve thi pehlu manu nortu jire bije adhik upvas",
+      "titleEn": "Aai padve thi pehlu manu nortu jire bije adhik upvas",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "garbo-mano-ghume-re-navey-khand-ma-divda-jagmag-thay-34faa3c2",
+      "titleGu": "garbo mano ghume re navey khand ma divda jagmag thay",
+      "titleEn": "Garbo mano ghume re navey khand ma divda jagmag thay",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "aavo-madi-vela-ramva-e30b0790",
+      "titleGu": "Aavo madi vela ramva",
+      "titleEn": "Aavo madi vela ramva",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "ambar-gaje-megh-dambar-gaje-97662637",
+      "titleGu": "Ambar gaje megh dambar gaje",
+      "titleEn": "Ambar gaje megh dambar gaje",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "a-bole-to-ambe-ma-ne-b-boleto-bahuchar-ma-e0ab5e0d",
+      "titleGu": "A bole to ambe ma ne B boleto bahuchar ma",
+      "titleEn": "A bole to ambe ma ne B boleto bahuchar ma",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "ambe-madi-bole-ne-duniya-aakhi-dole-263d29a5",
+      "titleGu": "Ambe madi bole ne duniya aakhi dole",
+      "titleEn": "Ambe madi bole ne duniya aakhi dole",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "mare-mogal-chhe-machharali-re-2c808190",
+      "titleGu": "Mare mogal chhe machharali re",
+      "titleEn": "Mare mogal chhe machharali re",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "madi-bethi-chho-kachchhade-munjar-193640fe",
+      "titleGu": "Madi bethi chho kachchhade munjar",
+      "titleEn": "Madi bethi chho kachchhade munjar",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "mandavde-aavo-khodal-khamkare-c72c53f7",
+      "titleGu": "Mandavde aavo khodal khamkare",
+      "titleEn": "Mandavde aavo khodal khamkare",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    },
+    {
+      "id": "moti-verana-chok-ma-aavya-ambe-ma-chowk-ma-jag-mag-thay-43e31574",
+      "titleGu": "Moti verana chok ma aavya ambe ma chowk ma jag mag thay",
+      "titleEn": "Moti verana chok ma aavya ambe ma chowk ma jag mag thay",
+      "category": "Traditional",
+      "issueTypes": [
+        "SEVERELY_TRUNCATED",
+        "MISSING_GUJARATI_SCRIPT"
+      ],
+      "details": [
+        "Only 1 lines total (1 words).",
+        "Gujarati lyrics contain zero Gujarati Unicode characters."
+      ],
+      "totalGuLines": 1,
+      "sampleLyricsGu": "Lyrics_is_not_available"
+    }
+  ]
+}
