@@ -12,9 +12,13 @@ export default defineConfig({
     },
   },
   server: {
-    // `npm run dev:server` runs the API locally on port 3001
+    // In dev, proxy /api to the live server to load all 500+ garbas and library songs
     proxy: {
-      '/api': 'http://localhost:3001',
+      '/api': {
+        target: 'https://garbaraas.in',
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
 })

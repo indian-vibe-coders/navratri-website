@@ -1254,22 +1254,22 @@ export const GARBAS_DATA: Garba[] = [
   {
     id: "jay-adhya-shakti-aarti",
     title: {
-      gu: "જય આધ્ય શક્તિ આરતી",
-      hi: "जय आद्या शक्ति आरती",
-      en: "Jay Adhya Shakti Aarti"
+      gu: "જય આદ્ય શક્તિ આરતી",
+      hi: "जय आद्य शक्ति आरती",
+      en: "Jay Adya Shakti Aarti"
     },
     category: "Aarti",
     deity: "Maa Amba / All Goddesses",
     isPopular: true,
-    tags: ["Aarti", "Universal", "Devotional", "Holy"],
+    tags: ["Aarti", "Universal", "Devotional", "Holy", "Navratri Aarti", "Maa Amba"],
     description: {
-      gu: "નવરાત્રીના ગરબાના અંતે ગવાતી સર્વશ્રેષ્ઠ પવિત્ર આરાધના આરતી.",
-      hi: "नवरात्रि गरबा के अंत में गाई जाने वाली सर्वोच्च पावन महा आरती।",
-      en: "The universally revered Gujarati Amba Aarti performed every evening during Navratri."
+      gu: "નવરાત્રીના ગરબાના અંતે ગવાતી સર્વશ્રેષ્ઠ અને પરમ પવિત્ર આરાધના આરતી (શ્રી શિવાનંદ સ્વામી રચિત).",
+      hi: "नवरात्रि गरबा के अंत में गाई जाने वाली सर्वोच्च एवं परम पावन महाआरती (श्री शिवानंद स्वामी रचित)।",
+      en: "The universally revered Gujarati Amba Aarti performed every evening during Navratri, composed by Swami Shivanand."
     },
     artworkUrl: "/images/covers/cover_maa_durga.jpg",
     lyricsSource: {
-      name: "Traditional Navratri Garba",
+      name: "Traditional Navratri Garba Collection",
       url: "#"
     },
     audioReference: {
@@ -1280,61 +1280,42 @@ export const GARBAS_DATA: Garba[] = [
     },
     lyrics: {
       gu: [
-        "જય આધ્ય શક્તિ મા જય આધ્ય શક્તિ...",
-        "અખંડ બ્રહ્માંડ દીપાવ્યા, પંચદેવ હંસી..."
+        "જય આદ્ય શક્તિ મા જય આદ્ય શક્તિ,",
+        "અખંડ બ્રહ્માંડ નિપાવ્યા, પડવે પ્રગટ થયાં મા...",
+        "ઓમ જયો જયો મા જગદંબે..."
       ],
       hi: [
-        "जय आध्य शक्ति मा जय आध्य शक्ति...",
-        "अखंड ब्रह्मांड दीपाव्या, पंचदेव हंसी..."
+        "जय आद्य शक्ति मा जय आद्य शक्ति,",
+        "अखंड ब्रह्मांड निपाव्या, पडवे प्रगट थयां मा...",
+        "ओम जयो जयो मा जगदंबे..."
       ],
       en: [
-        "Jai Adhya Shakti Maa Jai Adhya Shakti...",
-        "Akhand brahmaand deepaavya, panchdev hansi..."
+        "Jai Aadya Shakti Maa Jai Aadya Shakti,",
+        "Akhand brahmaand nipaavya, padve pragat thaya Maa...",
+        "Om Jayo Jayo Maa Jagadambe..."
       ],
       sections: [
         {
           type: "chorus",
           label: {
-            gu: "આરતી ધુન",
-            hi: "आरती धुन",
+            gu: "આરતી ધુન (પલ્લવ)",
+            hi: "आरती धुन (पल्लव)",
             en: "AARTI REFRAIN"
           },
           lines: {
             gu: [
-              "જય આધ્ય શક્તિ મા જય આધ્ય શક્તિ,",
-              "અખંડ બ્રહ્માંડ નિપાવ્યા, ઓમ જયો જયો મા જગદંબે !"
-            ],
-            hi: [
-              "जय आध्य शक्ति मा जय आध्य शक्ति,",
-              "अखंड ब्रह्मांड निपाव्या, ओम जयो जयो मा जगदंबे !"
-            ],
-            en: [
-              "Jai Adhya Shakti Maa Jai Adhya Shakti,",
-              "Akhand brahmaand nipaavya, Om Jayo Jayo Maa Jagadambe !"
-            ]
-          }
-        },
-        {
-          type: "verse",
-          label: {
-            gu: "પ્રથમ એકમ (અંબાજી સ્વરૂપ)",
-            hi: "प्रथम एकम (अंबाजी स्वरूप)",
-            en: "Ekam Verse (Amba Swaroop)"
-          },
-          lines: {
-            gu: [
-              "દ્વિતીય બે સ્વરૂપ શિવ શક્તિ જાણું,",
-              "બ્રહ્મા વિષ્ણુ સદાશિવ ગુણતારા ગાઉં...",
+              "જય આદ્ય શક્તિ મા જય આદ્ય શક્તિ,",
+              "અખંડ બ્રહ્માંડ નિપાવ્યા, પડવે પ્રગટ થયાં મા,",
               "ઓમ જયો જયો મા જગદંબે !"
             ],
             hi: [
-              "द्वितीय बे स्वरूप शिव शक्ति जाणुं,",
-              "ब्रह्मा विष्णु सदाशिव गुणतारा गाउं...",
+              "जय आद्य शक्ति मा जय आद्य शक्ति,",
+              "अखंड ब्रह्मांड निपाव्या, पडवे प्रगट थयां मा,",
               "ओम जयो जयो मा जगदंबे !"
             ],
             en: [
-              "Dvitiya be swaroop Shiv Shakti jaanoo,",
-              "Brahma Vishnu Sadashiv gun taara gaaoo...",
+              "Jai Aadya Shakti Maa Jai Aadya Shakti,",
+              "Akhand brahmaand nipaavya, padve pragat thaya Maa,",
               "Om Jayo Jayo Maa Jagadambe !"
             ]
           }
@@ -1342,24 +1323,24 @@ export const GARBAS_DATA: Garba[] = [
         {
           type: "verse",
           label: {
-            gu: "તૃતીયા ત્રિગુણ (ત્રિભુવન સુંદરી)",
-            hi: "तृतीया त्रिगुण (त्रिभुवन सुंदरी)",
-            en: "Tritiya Verse (Trigun Sundari)"
+            gu: "પ્રથમ એકમ (એકે એક સ્વરૂપ)",
+            hi: "प्रथम एकम (एके एक स्वरूप)",
+            en: "Verse 1 (Ekam - First Night)"
           },
           lines: {
             gu: [
-              "તૃતીયા ત્રિગુણ સુંદરી ત્રિભુવન માં બેઠી,",
-              "દયા કરી ને માડી આપો મા પાવન ભક્તિ.",
+              "એકે એક સ્વરૂપ અંતર નવ ધરશો, મા અંતર નવ ધરશો,",
+              "ભોળા ભવાનીને ભજતાં, ભવ ફેરા ટળશે,",
               "ઓમ જયો જયો મા જગદંબે !"
             ],
             hi: [
-              "तृतीया त्रिगुण सुंदरी त्रिभुवन मां बेठी,",
-              "दया करी ने माडी आपो मा पावन भक्ति.",
+              "एके एक स्वरूप अंतर नव धरशो, मा अंतर नव धरशो,",
+              "भोळा भवानीने भजतां, भव फेरा टळशे,",
               "ओम जयो जयो मा जगदंबे !"
             ],
             en: [
-              "Tritiya trigun sundari tribhuvan ma beethi,",
-              "Daya kari ne maadi aapo ma paavan bhakti.",
+              "Eke ek swaroop antar nav dharsho, Maa antar nav dharsho,",
+              "Bhola Bhavanine bhajta, bhav fera talshe,",
               "Om Jayo Jayo Maa Jagadambe !"
             ]
           }
@@ -1367,24 +1348,24 @@ export const GARBAS_DATA: Garba[] = [
         {
           type: "verse",
           label: {
-            gu: "ચોથે ચતુરા (મહાલક્ષ્મી સ્વરૂપ)",
-            hi: "चौथे चतुरा (महालक्ष्मी स्वरूप)",
-            en: "Chaturthi Verse (Maha Laxmi Swaroop)"
+            gu: "દ્વિતીયા બીજ (બેય સ્વરૂપ શિવશક્તિ)",
+            hi: "द्वितीया बीज (बेय स्वरूप शिवशक्ति)",
+            en: "Verse 2 (Beej - Second Night)"
           },
           lines: {
             gu: [
-              "ચોથે ચતુરા મહાલક્ષ્મી મા રૂપ સોહામણા,",
-              "ચાર ભુજા માં ત્રિશૂળ પદ્મ ચક્ર જ્યોત મણા.",
+              "દ્વિતીયે બેય સ્વરૂપ શિવશક્તિ જાણું, મા શિવશક્તિ જાણું,",
+              "બ્રહ્મા વિષ્ણુ સદાશિવ, ગુણ તારા ગાઉં,",
               "ઓમ જયો જયો મા જગદંબે !"
             ],
             hi: [
-              "चोथे चतुरा महालक्ष्मी मा रूप सोहामणा,",
-              "चार भुजा मां त्रिशूळ पद्म चक्र ज्योत मणा.",
+              "द्वितीय बेय स्वरूप शिवशक्ति जाणुं, मा शिवशक्ति जाणुं,",
+              "ब्रह्मा विष्णु सदाशिव, गुण तारा गाउं,",
               "ओम जयो जयो मा जगदंबे !"
             ],
             en: [
-              "Chothe chatura Maha Laxmi Maa roop sohamana,",
-              "Chaar bhuja ma trishool padma chakra jyot mana.",
+              "Dvitiye bey swaroop Shivshakti jaanoo, Maa Shivshakti jaanoo,",
+              "Brahma Vishnu Sadashiv, gun taara gaaoo,",
               "Om Jayo Jayo Maa Jagadambe !"
             ]
           }
@@ -1392,24 +1373,424 @@ export const GARBAS_DATA: Garba[] = [
         {
           type: "verse",
           label: {
-            gu: "નવમી નવરાત્રી (મા જગદંબા પાવન ધામ)",
-            hi: "नवमी नवरात्रि (मां जगदंबा पावन धाम)",
-            en: "Navami Verse (Navratri Celebration)"
+            gu: "તૃતીયા ત્રીજ (ત્રિભુવનમાં બેઠા)",
+            hi: "तृतीया तीज (त्रिभुवनमां बेठा)",
+            en: "Verse 3 (Trij - Third Night)"
           },
           lines: {
             gu: [
-              "નવમી નવરાત્રી પાલન કરનારી,",
-              "આરતી ઉતારે સેવક મા દયાકારી.",
+              "તૃતીયા ત્રણ સ્વરૂપ ત્રિભુવનમાં બેઠા, મા ત્રિભુવનમાં બેઠા,",
+              "દયા કરી ભવાની, દર્શન હર દીઠા,",
               "ઓમ જયો જયો મા જગદંબે !"
             ],
             hi: [
-              "नवमी नवरात्री पालन करनारी,",
-              "आरती उतारे सेवक मा दयाकारी.",
+              "तृतीया त्रण स्वरूप त्रिभुवनमां बेठा, मा त्रिभुवनमां बेठा,",
+              "दया करी भवानी, दर्शन हर दीठा,",
               "ओम जयो जयो मा जगदंबे !"
             ],
             en: [
-              "Navami Navraatri paalan karnaari,",
-              "Aarti utaare sevak Maa dayaakaari.",
+              "Tritiya tran swaroop tribhuvan ma betha, Maa tribhuvan ma betha,",
+              "Daya kari Bhavani, darshan har deetha,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ચતુર્થી ચોથ (ચતુરા મહાલક્ષ્મી)",
+            hi: "चतुर्थी चौथ (चतुरा महालक्ष्मी)",
+            en: "Verse 4 (Choth - Fourth Night)"
+          },
+          lines: {
+            gu: [
+              "ચોથે ચતુરા મહાલક્ષ્મી મા સચરાચર વ્યાપ્યાં, મા સચરાચર વ્યાપ્યાં,",
+              "ચાર ભુજા ચૌદિશા, પ્રગટી દક્ષિણ ઢાળ્યાં,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "चोथे चतुरा महालक्ष्मी मा सचराचर व्याप्यां, मा सचराचर व्याप्यां,",
+              "चार भुजा चौदिशा, प्रगटी दक्षिण ढाळ्यां,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Chothe chatura Mahalakshmi Maa sacharaachar vyaapya, Maa sacharaachar vyaapya,",
+              "Chaar bhuja chaudisha, pragati dakshin dhalya,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "પંચમી પાંચમ (પંચમે પંચ ઋષિ)",
+            hi: "पंचमी पांचम (पंचमे पंच ऋषि)",
+            en: "Verse 5 (Pancham - Fifth Night)"
+          },
+          lines: {
+            gu: [
+              "પંચમે પંચ ઋષિ પંચાનન કાહે, મા પંચાનન કાહે,",
+              "પંચ તત્વ પરમેશ્વર, પંચે તત્વ માયા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "पंचमे पंच ऋषि पंचानन काहे, मा पंचानन काहे,",
+              "पंच तत्व परमेश्वर, पंचे तत्व माया,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Panchame panch rishi panchanan kaahe, Maa panchanan kaahe,",
+              "Panch tatva Parameshwar, panche tatva maaya,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ષષ્ઠી છઠ (તું નારાયણી મહિષાસુર માર્યો)",
+            hi: "षष्ठी छठ (तुं नारायणी महिषासुर मार्यो)",
+            en: "Verse 6 (Chhath - Sixth Night)"
+          },
+          lines: {
+            gu: [
+              "ષષ્ઠી તું નારાયણી મહિષાસુર માર્યો, મા મહિષાસુર માર્યો,",
+              "નરનારીના રૂપે, વ્યાપી સર્વ તાર્યો,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "षष्ठी तुं नारायणी महिषासुर मार्यो, मा महिषासुर मार्यो,",
+              "नरनारीना रूपे, व्यापी सर्व तार्यो,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Shashthi tu Narayani Mahishasur maaryo, Maa Mahishasur maaryo,",
+              "Nar-naari na roope, vyaapi sarva taaryo,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "સપ્તમી સાતમ (સપ્ત પાતાળ સંધ્યા સાવિત્રી)",
+            hi: "सप्तमी सातम (सप्त पाताळ संध्या सावित्री)",
+            en: "Verse 7 (Saatam - Seventh Night)"
+          },
+          lines: {
+            gu: [
+              "સપ્તમી સપ્ત પાતાળ સંધ્યા સાવિત્રી, મા સંધ્યા સાવિત્રી,",
+              "ગૌ ગંગા ગાયત્રી, ગૌરી ગીતા મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "सप्तमी सप्त पाताळ संध्या सावित्री, मा संध्या सावित्री,",
+              "गौ गंगा गायत्री, गौरी गीता मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Saptami sapta paataal sandhya Saavitri, Maa sandhya Saavitri,",
+              "Gau Ganga Gayatri, Gauri Geeta Maa,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "અષ્ટમી આઠમ (અષ્ટ ભુજા આઈ આનંદા)",
+            hi: "अष्टमी आठम (अष्ट भुजा आई आनंदा)",
+            en: "Verse 8 (Aatham - Eighth Night)"
+          },
+          lines: {
+            gu: [
+              "અષ્ટમી અષ્ટ ભુજા આઈ આનંદા, મા આઈ આનંદા,",
+              "સુરનર મુનિવર વંદ્યા, દેવ દાનવ દમ્યા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "अष्टमी अष्ट भुजा आई आनंदा, मा आई आनंदा,",
+              "सुरनर मुनिवर वंद्या, देव दानव दम्या,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Ashtami ashta bhuja Aai Aananda, Maa Aai Aananda,",
+              "Sur-nar munivar vandya, dev daanav damya,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "નવમી નોમ (નવકૂળ નાગ સેવે નવદુર્ગા)",
+            hi: "नवमी नौम (नवकूळ नाग सेवे नवदुर्गा)",
+            en: "Verse 9 (Nom - Ninth Night)"
+          },
+          lines: {
+            gu: [
+              "નવમી નવકૂળ નાગ સેવે નવદુર્ગા, મા સેવે નવદુર્ગા,",
+              "નવરાત્રિના પૂજન, કીધાં હરબ્રહ્મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "नवमी नवकूळ नाग सेवे नवदुर्गा, मा सेवे नवदुर्गा,",
+              "नवरात्रिना पूजन, कीधां हरब्रह्मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Navami navkul naag seve Navadurga, Maa seve Navadurga,",
+              "Navaratri na poojan, keedha Har-Brahma,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "દશમી દસમ (દશ અવતાર જય વિજયાદશમી)",
+            hi: "दशमी दशम (दश अवतार जय विजयादशमी)",
+            en: "Verse 10 (Dasam - Tenth Day / Vijayadashami)"
+          },
+          lines: {
+            gu: [
+              "દશમી દશ અવતાર જય વિજયાદશમી, મા જય વિજયાદશમી,",
+              "રામે રાવણ માર્યો, રાવણ રોળ્યો મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "दशमी दश अवतार जय विजयादशमी, मा जय विजयादशमी,",
+              "रामे रावण मार्यो, रावण रोळ्यो मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Dashami dash avtaar jai Vijayadashami, Maa jai Vijayadashami,",
+              "Raame Ravan maaryo, Ravan rolyo Maa,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "એકાદશી અગિયારસ (કાત્યાયની કામા)",
+            hi: "एकादशी अगियारस (कात्यायनी कामा)",
+            en: "Verse 11 (Agyaras - Eleventh Night)"
+          },
+          lines: {
+            gu: [
+              "એકાદશી અગિયારસ કાત્યાયની કામા, મા કાત્યાયની કામા,",
+              "કામદુર્ગા કાલિકા, શ્યામા ને રામા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "एकादशी अगियारस कात्यायनी कामा, मा कात्यायनी कामा,",
+              "कामदुर्गा कालिका, श्यामा ने रामा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Ekadashi agyaaras Kaatyaayani kaama, Maa Kaatyaayani kaama,",
+              "Kaamdurga Kaalika, Shyama ne Raama,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "દ્વાદશી બારસ (બહુચર અંબા કાળકા)",
+            hi: "द्वादशी बारस (बहुचर अंबा काळका)",
+            en: "Verse 12 (Baaras - Twelfth Night)"
+          },
+          lines: {
+            gu: [
+              "દ્વાદશી બહુચર અંબા કાળકા મા જાણી, મા કાળકા મા જાણી,",
+              "શક્તિરૂપે શિવ સાથે, કલ્યાણી જાણી,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "द्वादशी बहुचर अंबा काळका मा जाणी, मा काळका मा जाणी,",
+              "शक्तिरूपे शिव साथे, कल्याणी जाणी,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Dvadashi Bahuchar Amba Kaalka Maa jaani, Maa Kaalka Maa jaani,",
+              "Shaktirupe Shiv saathe, kalyaani jaani,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ત્રયોદશી તેરસ (તુલજા રૂપ તું તારુણી)",
+            hi: "त्रयोदशी तेरस (तुलजा रूप तुं तारुणी)",
+            en: "Verse 13 (Teras - Thirteenth Night)"
+          },
+          lines: {
+            gu: [
+              "તેરસે તુલજા રૂપ તું તારુણી માતા, મા તું તારુણી માતા,",
+              "બ્રહ્મા વિષ્ણુ સદાશિવ, ગુણ તારા ગાતા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "तेरसे तुलजा रूप तुं तारुणी माता, मा तुं तारुणी माता,",
+              "ब्रह्मा विष्णु सदाशिव, गुण तारा गाता,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Terase Tulja roop tu taaruni maata, Maa tu taaruni maata,",
+              "Brahma Vishnu Sadashiv, gun taara gaata,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ચતુર્દશી ચૌદસ (ચૌદ ભુવનમાં ચંડી ચામુંડા)",
+            hi: "चतुर्दशी चौदस (चौद भुवनमां चंडी चामुंडा)",
+            en: "Verse 14 (Chaudas - Fourteenth Night)"
+          },
+          lines: {
+            gu: [
+              "ચૌદશે ચૌદ ભુવનમાં ચંડી ચામુંડા, મા ચંડી ચામુંડા,",
+              "ભાવ ભક્તિથી ભજતાં, દુઃખ હરિયાં રૂડાં,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "चौदशे चौद भुवनमां चंडी चामुंडा, मा चंडी चामुंडा,",
+              "भाव भक्तिथी भजतां, दुःख हरियां रूडां,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Chaudashe chaud bhuvan ma Chandi Chamunda, Maa Chandi Chamunda,",
+              "Bhaav bhaktithi bhajta, dukh hariya rooda,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "પૂર્ણિમા પૂનમ (કુંભ ભર્યો સાંભળજો માડી)",
+            hi: "पूर्णिमा पूनम (कुंभ भर्यो सांभळजो माडी)",
+            en: "Verse 15 (Poonam - Full Moon Night)"
+          },
+          lines: {
+            gu: [
+              "પૂનમે કુંભ ભર્યો સાંભળજો માડી, મા સાંભળજો માડી,",
+              "વસિષ્ઠ નિર્મળ કીધા, કાળકા કાળી,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "पूनमे कुंभ भर्यो सांभळजो माडी, मा सांभळजो माडी,",
+              "वसिष्ठ निर्मळ कीधा, काळका काळी,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Pooname kumbh bharyo saambhaljo maadi, Maa saambhaljo maadi,",
+              "Vasishtha nirmal keedha, Kaalka Kaali,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "સંવત સોળસેં બાવન (કાવિઠા પ્રાગટ્ય)",
+            hi: "संवत सोळसें बावन (काविठा प्राकट्य)",
+            en: "Verse 16 (Samvat 1652 - Shivanand Swami)"
+          },
+          lines: {
+            gu: [
+              "સંવત સોળસેં બાવન સાલ સોળસેં બાવન, મા સાલ સોળસેં બાવન,",
+              "સંવત સોળસેં બાવનમાં, પ્રગટ્યાં કાવિઠા મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "संवत सोळसें बावन साल सोळसें बावन, मा साल सोळसें बावन,",
+              "संवत सोळसें बावनमां, प्रगट्यां काविठा मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Samvat solase baavan saal solase baavan, Maa saal solase baavan,",
+              "Samvat solase baavan ma, pragatya Kaavitha Maa,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ત્રંબાવટી નગરી (સોળ સહસ્ત્ર બાળા)",
+            hi: "त्रंबावटी नगरी (सोळ सहस्त्र बाळा)",
+            en: "Verse 17 (City of Trambavati)"
+          },
+          lines: {
+            gu: [
+              "ત્રંબાવટી નગરી મા રૂપાવટી નગરી, મા મંચાવટી નગરી,",
+              "સોળ સહસ્ત્ર ત્યાં બાળા, ભોગવે ભોગ મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "त्रंबावटी नगरी मा रूपावटी नगरी, मा मंचावटी नगरी,",
+              "सोळ सहस्त्र त्यां बाळा, भोगवे भोग मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Trambavati nagari Maa Roopavati nagari, Maa Manchavati nagari,",
+              "Sol sahastra tya baala, bhogve bhog Maa,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ક્ષમા યાચના (ત્રિભુવન તારિણી)",
+            hi: "क्षमा याचना (त्रिभुवन तारिणी)",
+            en: "Verse 18 (Prayer for Grace & Forgiveness)"
+          },
+          lines: {
+            gu: [
+              "એકમેક એક ચરણે વંદન કરું માડી, મા વંદન કરું માડી,",
+              "ક્ષમા કરો અપરાધ, ત્રિભુવન તારિણી મા,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "एकमेक एक चरणे वंदन करुं माडी, मा वंदन करुं माडी,",
+              "क्षमा करो अपराध, त्रिभुवन तारिणी मा,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Ekmek ek charane vandan karoo maadi, Maa vandan karoo maadi,",
+              "Kshama karo aparaadh, tribhuvan taarini Maa,",
+              "Om Jayo Jayo Maa Jagadambe !"
+            ]
+          }
+        },
+        {
+          type: "verse",
+          label: {
+            gu: "ફળશ્રુતિ (માની આરતી જે ભાવે ગાશે)",
+            hi: "फलश्रुति (मानी आरती जे भावे गाशे)",
+            en: "Verse 19 (Phalashruti - Blessings of Aarti)"
+          },
+          lines: {
+            gu: [
+              "માની આરતી જે કોઈ નરનારી ગાશે, મા જે ભાવે ગાશે,",
+              "ભણે શિવાનંદ સ્વામી, સુખ સંપત્તિ થાશે, હર કૈલાસે જાશે,",
+              "ઓમ જયો જયો મા જગદંબે !"
+            ],
+            hi: [
+              "मानी आरती जे कोई नरनारी गाशे, मा जे भावे गाशे,",
+              "भणे शिवानंद स्वामी, सुख संपत्ति थाशे, हर कैलासे जाशे,",
+              "ओम जयो जयो मा जगदंबे !"
+            ],
+            en: [
+              "Maa ni Aarti je koi nar-naari gaashe, Maa je bhaave gaashe,",
+              "Bhane Shivanand Swami, sukh sampatti thaashe, har kailaase jaashe,",
               "Om Jayo Jayo Maa Jagadambe !"
             ]
           }
@@ -1417,22 +1798,28 @@ export const GARBAS_DATA: Garba[] = [
         {
           type: "chorus",
           label: {
-            gu: "અંતિમ મહા આરતી પલ્લવ",
-            hi: "अंतिम महा आरती पल्लव",
-            en: "FINAL MAHA AARTI CHORUS"
+            gu: "અંતિમ મહા આરતી પલ્લવ અને જયઘોષ",
+            hi: "अंतिम महा आरती पल्लव एवं जयघोष",
+            en: "FINAL MAHA AARTI CHORUS & JAYGHOSH"
           },
           lines: {
             gu: [
-              "જય આધ્ય શક્તિ મા જય આધ્ય શક્તિ,",
-              "અખંડ બ્રહ્માંડ નિપાવ્યા, ઓમ જયો જયો મા જગદંબે !"
+              "જય આદ્ય શક્તિ મા જય આદ્ય શક્તિ,",
+              "અખંડ બ્રહ્માંડ નિપાવ્યા, પડવે પ્રગટ થયાં મા,",
+              "ઓમ જયો જયો મા જગદંબે !",
+              "બોલો અંબે માત કી જય ! બોલો આદ્ય શક્તિ માત કી જય !"
             ],
             hi: [
-              "जय आध्य शक्ति मा जय आध्य शक्ति,",
-              "अखंड ब्रह्मांड निपाव्या, ओम जयो जयो मा जगदंबे !"
+              "जय आद्य शक्ति मा जय आद्य शक्ति,",
+              "अखंड ब्रह्मांड निपाव्या, पडवे प्रगट थयां मा,",
+              "ओम जयो जयो मा जगदंबे !",
+              "बोलो अंबे मात की जय ! बोलो आद्य शक्ति मात की जय !"
             ],
             en: [
-              "Jai Adhya Shakti Maa Jai Adhya Shakti,",
-              "Akhand brahmaand nipaavya, Om Jayo Jayo Maa Jagadambe !"
+              "Jai Aadya Shakti Maa Jai Aadya Shakti,",
+              "Akhand brahmaand nipaavya, padve pragat thaya Maa,",
+              "Om Jayo Jayo Maa Jagadambe !",
+              "Bolo Ambe Maat Ki Jai ! Bolo Aadya Shakti Maat Ki Jai !"
             ]
           }
         }
