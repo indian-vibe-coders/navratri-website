@@ -41,6 +41,24 @@ export const LyricsViewer: React.FC<LyricsViewerProps> = ({
   const secondaryTitle = language === 'en' ? garba.title.gu : garba.title.en;
   const isLibrarySong = !!garba.collection && garba.collection !== 'navratri';
 
+  // TEMPORARY DEBUGGING: inspect the sections supplied to LyricsViewer.
+  console.log('LyricsViewer song ID:', garba.id);
+  console.log('LyricsViewer total sections:', garba.lyrics.sections?.length ?? 0);
+  console.table(
+    (garba.lyrics.sections ?? []).map((section, index) => ({
+      index,
+      type: section.type,
+      label:
+        section.label?.en ||
+        section.label?.gu ||
+        section.label?.hi ||
+        '(no label)',
+      gujaratiLines: section.lines.gu?.length ?? 0,
+      hindiLines: section.lines.hi?.length ?? 0,
+      englishLines: section.lines.en?.length ?? 0,
+    }))
+  );
+
   return (
     <div className="min-h-screen bg-[#800000] text-[#FFF7E8] py-8 md:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
